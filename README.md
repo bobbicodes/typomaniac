@@ -8,7 +8,7 @@ So am I.
 
 ## Status
 
-Working. It load/save/edits text files.
+Working. It load/save/edits text files. Currently available for Windows x64
 
 ## Download
 
