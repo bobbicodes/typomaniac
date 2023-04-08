@@ -6,10 +6,6 @@ I hate all the major text editors, so I prefer using my own. However, in the las
 
 So am I. Fuck you.
 
-## How to Run
-
-[Download latest release](https://github.com/porkostomus/typing/releases/tag/v0.0.3)
-
 ## Local dev
 
 ```
@@ -23,8 +19,6 @@ npx electron .
 npm run build
 npx electron-packager . HelloWorld --platform=darwin --arch=x64
 ```
-
-## Getting Started
 
 ### Project Overview
 
