@@ -1,10 +1,6 @@
 # Typomaniac
 
-There are things I hate about every text editor, and for years I used [my own console editor](http://github.com/btowerscoding/bob). However, in the last few years I've gotten used to VSCode because of its outstanding Clojure integration thanks to [Calva](https://calva.io/). But, it's VSCode. So I finally realized I had all the tools lying around to throw this together, my own Electron editor. Uses [Codemirror 6](https://codemirror.net/), NextJournal's [clojure-mode](https://github.com/nextjournal/clojure-mode), and the [Small Clojure Interpreter (SCI)](https://github.com/babashka/sci).
-
-## "But Electron is slow"...
-
-So am I.
+There are things I hate about every text editor, and for years I used [my own console editor](http://github.com/btowerscoding/bob). However, in the last few years I've gotten used to VSCode because of its outstanding Clojure integration thanks to [Calva](https://calva.io/). But, it's VSCode. So I finally realized I had all the tools lying around to throw this together. Uses [Codemirror 6](https://codemirror.net/), NextJournal's [clojure-mode](https://github.com/nextjournal/clojure-mode), and the [Small Clojure Interpreter (SCI)](https://github.com/babashka/sci).
 
 ## Status
 
