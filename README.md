@@ -25,7 +25,7 @@ npx electron .
 ## Release
 ```
 npm run build
-npx electron-packager . HelloWorld --platform=darwin --arch=x64
+npx electron-packager . typomaniac --all
 ```
 
 ### Project Overview
