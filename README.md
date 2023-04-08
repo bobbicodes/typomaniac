@@ -1,10 +1,10 @@
 # Electron text editor
 
-I hate all the major text editors, so I prefer using my own. However, in the last few years I've gotten used to VSCode because of its outstanding Clojure integration. But now, I've gotten frustrated with VSCode well enough that I'm f ready to make an Electron editor of my own.
+I hate all the major text editors, so I prefer using my own. However, in the last few years I've gotten used to VSCode because of its outstanding Clojure integration. But now, I've gotten frustrated with VSCode well enough that I'm now ready to make an Electron editor of my own.
 
 ## "But Electron is slow"...
 
-Fuck you.
+So am I. Fuck you.
 
 ## How to Run
 

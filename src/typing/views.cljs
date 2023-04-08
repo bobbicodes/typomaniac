@@ -4,8 +4,16 @@
    [re-pressed.core :as rp]
    [typing.events :as events]
    [typing.subs :as subs]
-   [typing.words :as words]
+   [sci.core :as sci]
+    [app.renderer.sci :refer [eval-result !points last-result update-editor!]]
+   [app.renderer.sci-editor :as sci-editor :refer [points !result]]
+    [nextjournal.clojure-mode.keymap :as keymap]
    [goog.string :as gstring]))
+
+(defn eval-all [s]
+  (try (sci/eval-string s {:classes {'js goog/global :allow :all}})
+       (catch :default e
+         (str e))))
 
 (defn button [label onclick]
   [:button
@@ -130,14 +138,6 @@
          (- (Math/sin (* (* 180 (/ level (* 2 @ave))) (/ js/Math.PI 180))))
          " Z")))
 
-(defn gauge []
-  [:svg {:width    "20%"
-         :view-box (str "-1 -1.1 2 1")}
-   [:g
-    [:circle {:cx 0 :cy 0 :r 1 :stroke "blue" :stroke-width 0.05}]
-    [:path {:d (path @(re-frame/subscribe [::subs/ave-wpm])) :stroke "red"
-            :stroke-width 0.05}]]])
-
 (defn zero-pad [n]
   (if (< n 10)
     (str "0" n)
@@ -169,33 +169,62 @@
 (def lowercase-letters
   (set (map char (range 97 123))))
 
-(defn main-panel []
-  (let [text (re-frame/subscribe [::subs/text])
-        total (re-frame/subscribe [::subs/total-time])
-        presses (re-frame/subscribe [::subs/presses])
-        deltas (re-frame/subscribe [::subs/deltas])
-        times (re-frame/subscribe [::subs/times])
-        prob-keys (re-frame/subscribe [::subs/prob-keys])
-        moving-ave (re-frame/subscribe [::subs/moving-ave])
-        high-speed (re-frame/subscribe [::subs/high-speed])
-        all-time-ave (re-frame/subscribe [::subs/all-time-ave])
-        errors (re-frame/subscribe [::subs/errors])]
-    [:div [:center
-           [gauge]
-           [:h3 (str @moving-ave " wpm")]
-           (dispatch-keydown-rules)
-           [display-re-pressed-example]]
-     [:div
-      [:p (str "Keypresses analyzed: " (count @presses))]
-      [:p (str "Total time: " (fmt-time @total))]
-      [:p (str "Average: " @all-time-ave " wpm")]
-      [:p (str "High speed: " @high-speed " wpm")]
-      [:div
-       [:span "Problem keys (ave. ms): "]
-       [:span (interpose ", " (for [key (take 4 (filter #(contains? lowercase-letters (first %)) @prob-keys))]
-                                (str (first key) " - " (last key))))]
-       [:p (str "Errors: " @errors "  ("
-                (.round js/Math (* 100 (/ @errors (+ (count @presses) @errors))))
-                "%)")]]]]))
+(def demo "(map inc (range 8))")
 
-(/ 5 41)
+(defn linux? []
+  (some? (re-find #"(Linux)|(X11)" js/navigator.userAgent)))
+
+(defn mac? []
+  (and (not (linux?))
+       (some? (re-find #"(Mac)|(iPhone)|(iPad)|(iPod)" js/navigator.platform))))
+
+(defn key-mapping []
+  (cond-> {"ArrowUp" "↑"
+           "ArrowDown" "↓"
+           "ArrowRight" "→"
+           "ArrowLeft" "←"
+           "Mod" "Ctrl"}
+    (mac?)
+    (merge {"Alt" "⌥"
+            "Shift" "⇧"
+            "Enter" "⏎"
+            "Ctrl" "⌃"
+            "Mod" "⌘"})))
+
+(defn render-key [key]
+  (let [keys (into [] (map #(get ((memoize key-mapping)) % %) (str/split key #"-")))]
+    (into [:span]
+          (map-indexed (fn [i k]
+                         [:<>
+                          (when-not (zero? i) [:span " + "])
+                          [:kbd.kbd k]]) keys))))
+
+(defn key-bindings-table [keymap]
+  [:table.w-full.text-sm
+   [:thead
+    [:tr.border-t
+     [:th.px-3.py-1.align-top.text-left.text-xs.uppercase.font-normal.black-50 "Command"]
+     [:th.px-3.py-1.align-top.text-left.text-xs.uppercase.font-normal.black-50 "Keybinding"]
+     [:th.px-3.py-1.align-top.text-left.text-xs.uppercase.font-normal.black-50 "Alternate Binding"]
+     [:th.px-3.py-1.align-top.text-left.text-xs.uppercase.font-normal.black-50 {:style {:min-width 290}} "Description"]]]
+   (into [:tbody]
+         (->> keymap
+              (sort-by first)
+              (map (fn [[command [{:keys [key shift doc]} & [{alternate-key :key}]]]]
+                     [:<>
+                      [:tr.border-t.hover:bg-gray-100
+                       [:td.px-3.py-1.align-top.monospace.whitespace-nowrap [:b (name command)]]
+                       [:td.px-3.py-1.align-top.text-right.text-sm.whitespace-nowrap (render-key key)]
+                       [:td.px-3.py-1.align-top.text-right.text-sm.whitespace-nowrap (some-> alternate-key render-key)]
+                       [:td.px-3.py-1.align-top doc]]
+                      (when shift
+                        [:tr.border-t.hover:bg-gray-100
+                         [:td.px-3.py-1.align-top [:b (name shift)]]
+                         [:td.px-3.py-1.align-top.text-sm.whitespace-nowrap.text-right
+                          (render-key (str "Shift-" key))]
+                         [:td.px-3.py-1.align-top.text-sm]
+                         [:td.px-3.py-1.align-top]])]))))])
+
+(defn main-panel []
+    [:div [sci-editor/editor demo !points {:eval? true}]
+     [key-bindings-table (merge keymap/paredit-keymap* (typing.sci/keymap* "Alt"))]])
