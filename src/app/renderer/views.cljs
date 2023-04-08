@@ -9,6 +9,7 @@
    [app.renderer.sci-editor :as sci-editor :refer [points !result]]
    [nextjournal.clojure-mode.keymap :as keymap]
    [goog.string :as gstring]
+    [goog.object :as o]
    [clojure.string :as str]))
 
 (defn eval-all [s]
@@ -226,6 +227,30 @@
                          [:td.px-3.py-1.align-top.text-sm]
                          [:td.px-3.py-1.align-top]])]))))])
 
+(defn load []
+  [:input#input
+   {:type      "file"
+    :on-change
+    (fn [e]
+      (let [dom    (o/get e "target")
+            file   (o/getValueByKeys dom #js ["files" 0])
+            reader (js/FileReader.)]
+        (.readAsText reader file)
+        (set! (.-onload reader)
+              #(update-editor! (-> % .-target .-result)))))}])
+
 (defn main-panel []
-  [:div [sci-editor/editor demo !points {:eval? true}]
-   [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))]])
+  [:div 
+   [load]
+   [:button
+    {:on-click #(let [file-blob (js/Blob. [(str (some-> @!points .-state .-doc str))] #js {"type" "text/plain"})
+                      link (.createElement js/document "a")]
+                  (set! (.-href link) (.createObjectURL js/URL file-blob))
+                  (.setAttribute link "download" "mecca.txt")
+                  (.appendChild (.-body js/document) link)
+                  (.click link)
+                  (.removeChild (.-body js/document) link))}
+    "Save"]
+   [sci-editor/editor demo !points {:eval? false}]
+   ;[key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))]
+   ])

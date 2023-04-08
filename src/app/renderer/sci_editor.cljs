@@ -98,7 +98,8 @@
     [:div
      [:div {:class "rounded-md mb-0 text-sm monospace overflow-auto relative border shadow-lg bg-white"
             :ref   mount!
-            :style {:max-height 360
+            :style {
+                    ;:max-height 860
                     :background-color "#F8B0F8"}}]
      (when eval?
        (reset! eval-result @last-result))]

@@ -18,6 +18,11 @@
    (:last-press db)))
 
 (re-frame/reg-sub
+ ::cursor
+ (fn [db _]
+   (:cursor-pos db)))
+
+(re-frame/reg-sub
  ::high-speed
  (fn [db]
    (:high-speed db)))

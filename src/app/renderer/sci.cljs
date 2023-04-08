@@ -6,6 +6,7 @@
             [sci.core :as sci]
             [reagent.core :as r]
             [re-frame.core :refer [subscribe]]
+            [app.renderer.subs :as subs]
             [sci.impl.evaluator]
             [clojure.string :as str]))
 
@@ -44,8 +45,7 @@
 (defn update-editor! [text]
   (let [code (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")))
         end (count (some-> @!points .-state .-doc str))]
-    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
-                            :selection #js{:anchor @(subscribe [:cursor]) :head @(subscribe [:cursor])}})))
+    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}})))
 
 (defonce eval-tail (atom nil))
 
