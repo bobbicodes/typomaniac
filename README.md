@@ -1,24 +1,10 @@
-# Typomaniac
+# Electron text editor
 
-A [re-frame](https://github.com/day8/re-frame) application for improving typing speed.
+I hate all the major text editors, so I prefer using my own. However, in the last few years I've gotten used to VSCode because of its outstanding Clojure integration. But now, I've gotten frustrated with VSCode well enough that I'm f ready to make an Electron editor of my own.
 
-The app analyzes your keystrokes and identifies your "problem keys", then targets them without being annoying. All you type are actual common English words. Every now and then it nearly qualifies as AI-generated poetry.
+## "But Electron is slow"...
 
-[Try the live demo](https://porkostomus.github.io/typing/)
-
-## Rationale (why did I make this?)
-
-I don't have proper internet now, and was not able to find a typing app that was:
-* decent
-* free
-* works offline.
-
-## Goals
-
-* Can be easily modified for any specialized text desired.
-* "Gamify" it, i.e. create "levels" in which you unlock letters each time you reach an average target speed
-* Create data persistance and ways to visualize progress
-* Display on-screen keyboard with customizable layout
+Fuck you.
 
 ## How to Run
 
