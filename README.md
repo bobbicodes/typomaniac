@@ -6,6 +6,10 @@ There are things I hate about every text editor, and for years I used [my own co
 
 So am I. Fuck you.
 
+## Status
+
+Please don't use this yet
+
 ## Local dev
 
 ```
