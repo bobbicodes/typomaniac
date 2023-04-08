@@ -1,5 +1,6 @@
 (ns app.renderer.views
   (:require
+   [reagent.core :as r]
    [re-frame.core :as re-frame]
    [re-pressed.core :as rp]
    [app.renderer.events :as events]
@@ -8,7 +9,8 @@
    [app.renderer.sci-editor :as sci-editor :refer [points !result]]
    [nextjournal.clojure-mode.keymap :as keymap]
    [goog.object :as o]
-   [clojure.string :as str]))
+   [clojure.string :as str]
+   [goog.string :as gstring]))
 
 (defn dispatch-keydown-rules []
   (re-frame/dispatch
@@ -92,18 +94,36 @@
         (set! (.-onload reader)
               #(update-editor! (-> % .-target .-result)))))}])
 
+(def key-bindings? (r/atom false))
+
 (defn main-panel []
-  [:div 
-   [load]
-   [:button
-    {:on-click #(let [file-blob (js/Blob. [(str (some-> @!points .-state .-doc str))] #js {"type" "text/plain"})
-                      link (.createElement js/document "a")]
-                  (set! (.-href link) (.createObjectURL js/URL file-blob))
-                  (.setAttribute link "download" "mecca.txt")
-                  (.appendChild (.-body js/document) link)
-                  (.click link)
-                  (.removeChild (.-body js/document) link))}
-    "Save"]
-   [sci-editor/editor demo !points {:eval? true}]
-   ;[key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))]
-   ])
+    [:div 
+     [load]
+     [:button
+      {:on-click #(let [file-blob (js/Blob. [(str (some-> @!points .-state .-doc str))] #js {"type" "text/plain"})
+                        link (.createElement js/document "a")]
+                    (set! (.-href link) (.createObjectURL js/URL file-blob))
+                    (.setAttribute link "download" "mecca.txt")
+                    (.appendChild (.-body js/document) link)
+                    (.click link)
+                    (.removeChild (.-body js/document) link))}
+      (str "Save"  (gstring/unescapeEntities "&nbsp;")
+           ;; TODO: come up with a better way to add padding than this
+           (gstring/unescapeEntities "&nbsp;")
+           (gstring/unescapeEntities "&nbsp;")
+           (gstring/unescapeEntities "&nbsp;")
+           (gstring/unescapeEntities "&nbsp;")
+           (gstring/unescapeEntities "&nbsp;")
+           (gstring/unescapeEntities "&nbsp;"))]
+     [:button
+      {:on-click #(swap! key-bindings? not)}
+      (str  (gstring/unescapeEntities "&nbsp;") 
+            (gstring/unescapeEntities "&nbsp;")
+            (gstring/unescapeEntities "&nbsp;")
+            (gstring/unescapeEntities "&nbsp;")
+            (gstring/unescapeEntities "&nbsp;")
+            (gstring/unescapeEntities "&nbsp;")
+            (str (if @key-bindings? "Hide " "Show ") "key bindings"))]
+     [sci-editor/editor demo !points {:eval? true}]
+   (when @key-bindings?
+     [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))])])
