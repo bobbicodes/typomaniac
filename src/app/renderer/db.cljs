@@ -2,7 +2,6 @@
   (:require
    [cljs.reader]
    [re-frame.core :as re-frame]
-   [app.renderer.words :as words]
    [cljs.spec.alpha :as s]))
 
 (s/def ::cursor-pos int?)
@@ -14,13 +13,8 @@
 (s/def ::press (s/map-of ::time ::key))
 (s/def ::presses (s/coll-of ::press))
 
-(defn rand-text [n]
-  (str (apply str (interpose " " (take n (shuffle words/common-words)))) " "))
-
 (def default-db
-  {:text (rand-text 4)
-   :text2 (rand-text 4)
-   :current-key ""
+  {:current-key ""
    :cursor-pos 0
    :presses []
    :last-press 0
@@ -28,8 +22,7 @@
    :ave-wpm 0
    :high-speed 0
    :prob-keys []
-   :errors 0
-   :words words/common-words})
+   :errors 0})
 
 (def ls-key "presses-reframe")                         ;; localstore key
 

@@ -4,23 +4,11 @@
    [re-pressed.core :as rp]
    [app.renderer.events :as events]
    [app.renderer.subs :as subs]
-   [sci.core :as sci]
-   [app.renderer.sci :refer [eval-result !points last-result update-editor!]]
+   [app.renderer.sci :refer [!points update-editor!]]
    [app.renderer.sci-editor :as sci-editor :refer [points !result]]
    [nextjournal.clojure-mode.keymap :as keymap]
-   [goog.string :as gstring]
-    [goog.object :as o]
+   [goog.object :as o]
    [clojure.string :as str]))
-
-(defn eval-all [s]
-  (try (sci/eval-string s {:classes {'js goog/global :allow :all}})
-       (catch :default e
-         (str e))))
-
-(defn button [label onclick]
-  [:button
-   {:on-click onclick}
-   label])
 
 (defn dispatch-keydown-rules []
   (re-frame/dispatch
@@ -89,87 +77,6 @@
       {:keyCode   32}]
     ;; is pressed
      }]))
-
-(defn rand-text [n]
-  (str (apply str (interpose " " (take n (shuffle @(re-frame/subscribe [::subs/words]))))) " "))
-
-(defn display-re-pressed-example []
-  (let [re-pressed-example (re-frame/subscribe [::subs/re-pressed-example])
-        text (re-frame/subscribe [::subs/text])
-        text2 (re-frame/subscribe [::subs/text2])
-        pos (re-frame/subscribe [::subs/cursor-pos])
-        key (re-frame/subscribe [::subs/current-key])
-        presses (re-frame/subscribe [::subs/presses])
-        before (apply str (take @pos @text))
-        after (apply str (drop (inc @pos) @text))]
-    [:div
-     #_[:p
-        [:span
-         "wpm: "]
-        [:strong (str @(re-frame/subscribe [::subs/ave-wpm]))]]
-     [:p {:style {:font-size "40px"
-                  :font-family "Georgia"
-                  :cursor "none"}}
-      [:span
-       before]
-      [:span#cursor  {:style {:background "#fc199a"}} (if (= " " (nth @text @pos))
-                                                        (gstring/unescapeEntities "&nbsp;")
-                                                        (nth @text @pos))]
-      [:span  after]
-      [:p
-       [:span
-        @text2]]]
-
-
-
-
-     (when-let [rpe @re-pressed-example]
-       [:div
-        {:style {:padding          "16px"
-                 :background-color "lightgrey"
-                 :border           "solid 1px grey"
-                 :border-radius    "4px"
-                 :margin-top       "16px"}}
-        rpe])]))
-
-(defn path [level]
-  (let [ave (re-frame/subscribe [::subs/all-time-ave])]
-    (str "M -0.0 -0.025 L 0.0 0.025 L "
-         (- (Math/cos (* (* 180 (/ level (* 2 @ave))) (/ js/Math.PI 180))))
-         " "
-         (- (Math/sin (* (* 180 (/ level (* 2 @ave))) (/ js/Math.PI 180))))
-         " Z")))
-
-(defn zero-pad [n]
-  (if (< n 10)
-    (str "0" n)
-    n))
-
-(defn fmt-time [seconds]
-  (let [minutes (quot seconds 60)
-        hours (quot minutes 60)]
-    (str (when (< 0 hours)
-           (str hours ":"))
-         (zero-pad (mod minutes 60)) ":"
-         (zero-pad (mod seconds 60)))))
-
-(defn ave-time [letter]
-  (let [presses (sort-by key @(re-frame/subscribe [::subs/presses]))
-        times
-        (remove #(> % 5000)
-                (for [n (range 1 (count presses))
-                      :when (= (last (nth presses n)) letter)]
-                  (- (first (nth presses n)) (first (nth presses (dec n))))))]
-    (.round js/Math (/ (reduce + times) (count times)))))
-
-(defn problem-keys [presses]
-  (let [presses (sort-by key presses)
-        keys (distinct (vals presses))]
-    (reverse (sort-by last (for [letter keys]
-                             [letter (ave-time letter)])))))
-
-(def lowercase-letters
-  (set (map char (range 97 123))))
 
 (def demo "(map inc (range 8))")
 
