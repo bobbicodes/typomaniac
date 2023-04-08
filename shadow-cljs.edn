@@ -6,7 +6,7 @@
                 [re-pressed "0.3.1"]]
 
  :dev-http {8080 "resources/public/"}
-
+ :deps         true
  :builds {:main {:target :node-script
                  :output-to "resources/main.js"
                  :main app.main.core/main}

@@ -13,3 +13,6 @@
 # shadow-cljs cache, port files
 /.shadow-cljs/
 /resources/public/js/compiled/cljs-runtime/
+*/.cache/
+resources/public/js/cljs-runtime/*
+.cpcache/
