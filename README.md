@@ -8,7 +8,7 @@ So am I.
 
 ## Status
 
-Please don't use this yet
+Working. It load/save/edits text files.
 
 ## Local dev
 
