@@ -10,6 +10,10 @@ So am I.
 
 Working. It load/save/edits text files.
 
+## Download
+
+https://github.com/BTowersCoding/typomaniac/releases/tag/0.0.1
+
 ## Local dev
 
 ```
