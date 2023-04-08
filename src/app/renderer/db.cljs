@@ -17,6 +17,7 @@
   {:current-key ""
    :cursor-pos 0
    :presses []
+   :eval-result ""
    :last-press 0
    :key-map {}
    :ave-wpm 0

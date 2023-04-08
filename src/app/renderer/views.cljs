@@ -12,71 +12,17 @@
 
 (defn dispatch-keydown-rules []
   (re-frame/dispatch
-   [::rp/set-keydown-rules
-    {:event-keys [[[::events/set-current-key " "] [{:keyCode 32}]]
-                  [[::events/set-current-key "A"] [{:keyCode 65 :shiftKey true}]]
-                  [[::events/set-current-key "B"] [{:keyCode 66 :shiftKey true}]]
-                  [[::events/set-current-key "C"] [{:keyCode 67 :shiftKey true}]]
-                  [[::events/set-current-key "D"] [{:keyCode 68 :shiftKey true}]]
-                  [[::events/set-current-key "E"] [{:keyCode 69 :shiftKey true}]]
-                  [[::events/set-current-key "F"] [{:keyCode 70 :shiftKey true}]]
-                  [[::events/set-current-key "G"] [{:keyCode 71 :shiftKey true}]]
-                  [[::events/set-current-key "H"] [{:keyCode 72 :shiftKey true}]]
-                  [[::events/set-current-key "I"] [{:keyCode 73 :shiftKey true}]]
-                  [[::events/set-current-key "J"] [{:keyCode 74 :shiftKey true}]]
-                  [[::events/set-current-key "K"] [{:keyCode 75 :shiftKey true}]]
-                  [[::events/set-current-key "L"] [{:keyCode 76 :shiftKey true}]]
-                  [[::events/set-current-key "M"] [{:keyCode 77 :shiftKey true}]]
-                  [[::events/set-current-key "N"] [{:keyCode 78 :shiftKey true}]]
-                  [[::events/set-current-key "O"] [{:keyCode 79 :shiftKey true}]]
-                  [[::events/set-current-key "P"] [{:keyCode 80 :shiftKey true}]]
-                  [[::events/set-current-key "Q"] [{:keyCode 81 :shiftKey true}]]
-                  [[::events/set-current-key "R"] [{:keyCode 82 :shiftKey true}]]
-                  [[::events/set-current-key "S"] [{:keyCode 83 :shiftKey true}]]
-                  [[::events/set-current-key "T"] [{:keyCode 84 :shiftKey true}]]
-                  [[::events/set-current-key "U"] [{:keyCode 85 :shiftKey true}]]
-                  [[::events/set-current-key "V"] [{:keyCode 86 :shiftKey true}]]
-                  [[::events/set-current-key "W"] [{:keyCode 87 :shiftKey true}]]
-                  [[::events/set-current-key "X"] [{:keyCode 88 :shiftKey true}]]
-                  [[::events/set-current-key "Y"] [{:keyCode 89 :shiftKey true}]]
-                  [[::events/set-current-key "Z"] [{:keyCode 90 :shiftKey true}]]
-                  [[::events/set-current-key "a"] [{:keyCode 65}]]
-                  [[::events/set-current-key "b"] [{:keyCode 66}]]
-                  [[::events/set-current-key "c"] [{:keyCode 67}]]
-                  [[::events/set-current-key "d"] [{:keyCode 68}]]
-                  [[::events/set-current-key "e"] [{:keyCode 69}]]
-                  [[::events/set-current-key "f"] [{:keyCode 70}]]
-                  [[::events/set-current-key "g"] [{:keyCode 71}]]
-                  [[::events/set-current-key "h"] [{:keyCode 72}]]
-                  [[::events/set-current-key "i"] [{:keyCode 73}]]
-                  [[::events/set-current-key "j"] [{:keyCode 74}]]
-                  [[::events/set-current-key "k"] [{:keyCode 75}]]
-                  [[::events/set-current-key "l"] [{:keyCode 76}]]
-                  [[::events/set-current-key "m"] [{:keyCode 77}]]
-                  [[::events/set-current-key "n"] [{:keyCode 78}]]
-                  [[::events/set-current-key "o"] [{:keyCode 79}]]
-                  [[::events/set-current-key "p"] [{:keyCode 80}]]
-                  [[::events/set-current-key "q"] [{:keyCode 81}]]
-                  [[::events/set-current-key "r"] [{:keyCode 82}]]
-                  [[::events/set-current-key "s"] [{:keyCode 83}]]
-                  [[::events/set-current-key "t"] [{:keyCode 84}]]
-                  [[::events/set-current-key "u"] [{:keyCode 85}]]
-                  [[::events/set-current-key "v"] [{:keyCode 86}]]
-                  [[::events/set-current-key "w"] [{:keyCode 87}]]
-                  [[::events/set-current-key "x"] [{:keyCode 88}]]
-                  [[::events/set-current-key "y"] [{:keyCode 89}]]
-                  [[::events/set-current-key "z"] [{:keyCode 90}]]
-                  [[::events/set-current-key "-"] [{:keyCode 189}]]
-                  [[::events/set-current-key "'"] [{:keyCode 222}]]]
+    [::rp/set-keydown-rules
+     {:event-keys
+      (conj (into []
+                  (for [n (into [8 27 32 37 38 40] (range 40 100))]
+                    [[::events/clear-result]
+                     [{:keyCode n}]]))
+            [[::events/cursor-right] [{:keyCode 39}]])
+      :always-listen-keys [{:keyCode   13 :shiftKey true}]
+      :prevent-default-keys [{:keyCode   13 :shiftKey true}]}]))
 
-     :clear-keys
-     [[{:keyCode 27} ;; escape
-       ]]
-     :prevent-default-keys
-     [;; Ctrl+g
-      {:keyCode   32}]
-    ;; is pressed
-     }]))
+(dispatch-keydown-rules)
 
 (def demo "(map inc (range 8))")
 
@@ -158,6 +104,6 @@
                   (.click link)
                   (.removeChild (.-body js/document) link))}
     "Save"]
-   [sci-editor/editor demo !points {:eval? false}]
+   [sci-editor/editor demo !points {:eval? true}]
    ;[key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))]
    ])

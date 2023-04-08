@@ -8,8 +8,6 @@
 
 (enable-console-print!)
 
-(defonce state (atom 0))
-
 (defn root-component []
   [views/main-panel])
 
