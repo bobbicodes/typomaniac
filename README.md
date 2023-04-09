@@ -8,7 +8,7 @@ Working. It load/save/edits text files. Currently available for Windows x64
 
 ## Download
 
-https://github.com/BTowersCoding/typomaniac/releases/tag/0.0.1
+https://github.com/BTowersCoding/typomaniac/releases/
 
 ## Local dev
 
