@@ -6,12 +6,9 @@ There are things I hate about every text editor, and for years I used [my own co
 
 Working. It load/save/edits text files. Evaluation works too! Biggest limitation is probably that it only edits one file at a time.
 
-The keyboard behavior while doing inline evaluation needs some work. In particular, the cursor jumps to unexpected places because it's not being calculated properly.
-
-Binaries currently available for Windows x64.
-
 ## Download
 
+Binaries currently available for Windows x64:
 https://github.com/BTowersCoding/typomaniac/releases/
 
 ## Local dev
