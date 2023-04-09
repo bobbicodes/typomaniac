@@ -16,8 +16,7 @@
   (r/atom ""))
  
 (defonce context
-  (sci/init {:classes {'js goog/global
-                       :allow :all}
+  (sci/init {:classes {'js goog/global :allow :all}
              :namespaces {'max-or-throw.core {'max-or-throw max-or-throw}}}))
 
 (def max-seq-limit 10000)
@@ -45,12 +44,10 @@
 (defonce eval-tail (atom nil))
 
 (defn update-editor! [text]
-  (let [code (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")))
-        cursor-pos (some-> @!points .-state .-selection .-main .-head)
+  (let [cursor-pos (count text)
         end (count (some-> @!points .-state .-doc str))]
     (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
-                            :selection #js{:anchor cursor-pos :head cursor-pos}
-                            })))
+                            :selection #js{:anchor cursor-pos :head cursor-pos}})))
 
 (j/defn eval-at-cursor [on-result ^:js {:keys [state]}]
   (let [cursor-pos (some-> @!points .-state .-selection .-main .-head)
@@ -58,10 +55,11 @@
     (some->> (eval-region/cursor-node-string state)
              (eval-string)
              (on-result))
-    (update-editor! (str (subs code 0 cursor-pos)
+    (update-editor! (str (subs code 0 (count code))
                          (when-not (= "" @last-result) " => ")
-                         @last-result " "
-                         (reset! eval-tail (subs code cursor-pos (count code))))))
+                         @last-result
+                         (reset! eval-tail (subs code cursor-pos (count code)))))
+    (.dispatch @!points #js{:selection #js{:anchor (count code) :head (count code)}}))
   true)
 
 (j/defn eval-top-level [on-result ^:js {:keys [state]}]

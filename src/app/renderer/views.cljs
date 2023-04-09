@@ -3,7 +3,7 @@
    [reagent.core :as r]
    [re-frame.core :as re-frame]
    [re-pressed.core :as rp]
-   [app.renderer.events :as events]
+   [app.renderer.events :as events :refer [!debug]]
    [app.renderer.subs :as subs]
    [app.renderer.sci :refer [!points update-editor!]]
    [app.renderer.sci-editor :as sci-editor :refer [points !result]]
@@ -17,12 +17,14 @@
     [::rp/set-keydown-rules
      {:event-keys
       (conj (into []
-                  (for [n (into [8 27 32 37 38 40] (range 40 100))]
+                  (for [n (into [8 27 32 37 38 39 40] (range 40 100))]
                     [[::events/clear-result]
                      [{:keyCode n}]]))
-            [[::events/cursor-right] [{:keyCode 39}]])
-      :always-listen-keys [{:keyCode   13 :shiftKey true}]
-      :prevent-default-keys [{:keyCode   13 :shiftKey true}]}]))
+            ;[[::events/cursor-right] [{:keyCode 39}]]
+            )
+;      :always-listen-keys [{:keyCode   13 :shiftKey true}]
+;      :prevent-default-keys [{:keyCode   13 :shiftKey true}]
+      }]))
 
 (dispatch-keydown-rules)
 
@@ -126,4 +128,5 @@
             (str (if @key-bindings? "Hide " "Show ") "key bindings"))]
      [sci-editor/editor demo !points {:eval? true}]
    (when @key-bindings?
-     [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))])])
+     [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))])
+     [:div (str @!debug)]])
