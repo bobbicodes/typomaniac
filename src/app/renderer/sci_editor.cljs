@@ -73,6 +73,11 @@
                    extensions
                    (j/push! extensions))})))
 
+(defn eval-all [s]
+  (try (sci.core/eval-string s {:classes {'js goog/global :allow :all}})
+       (catch :default e
+         (str e))))
+
 (defn editor
   [source !view {:keys [eval?]}]
   (r/with-let
@@ -109,12 +114,3 @@
 
 (defonce points
   (r/atom []))
-
-(defn eval-all [s]
-  (try (sci.core/eval-string s {:classes {'js goog/global :allow :all}})
-       (catch :default e
-         (str e))))
-
-(defn update-result! [text]
-  (let [end (count (some-> @!result .-state .-doc str))]
-    (.dispatch @!result #js{:changes #js{:from 0 :to end :insert text}})))

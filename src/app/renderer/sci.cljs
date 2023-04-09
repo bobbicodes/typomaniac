@@ -14,7 +14,7 @@
 
 (def eval-result
   (r/atom ""))
-
+ 
 (defonce context
   (sci/init {:classes {'js goog/global
                        :allow :all}
@@ -42,12 +42,15 @@
 
 (defonce !points (r/atom ""))
 
+(defonce eval-tail (atom nil))
+
 (defn update-editor! [text]
   (let [code (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")))
+        cursor-pos (some-> @!points .-state .-selection .-main .-head)
         end (count (some-> @!points .-state .-doc str))]
-    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}})))
-
-(defonce eval-tail (atom nil))
+    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
+                            :selection #js{:anchor cursor-pos :head cursor-pos}
+                            })))
 
 (j/defn eval-at-cursor [on-result ^:js {:keys [state]}]
   (let [cursor-pos (some-> @!points .-state .-selection .-main .-head)

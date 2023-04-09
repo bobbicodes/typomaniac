@@ -4,6 +4,7 @@
    [re-pressed.core :as rp]
    [app.renderer.db :as db]
    [clojure.string :as str]
+    [app.renderer.sci-editor :as sci-editor :refer [eval-all]]
    [app.renderer.sci :refer [!points last-result update-editor! eval-tail]]
    [app.renderer.subs :as subs]))
 
@@ -11,6 +12,13 @@
  ::initialize-db
  (fn [_ _]
    db/default-db))
+
+(re-frame/reg-event-db
+ ::set-result
+ (fn [db [_ s]]
+   (update-editor! (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => "))
+                        (when-not (= "" @last-result) " => ") @last-result))
+   (assoc db :eval-result (str (eval-all (str (some-> @!points .-state .-doc str)))))))
 
 (re-frame/reg-event-db
  ::clear-result

@@ -1,6 +1,5 @@
 (ns app.renderer.core
-  (:require [reagent.core :refer [atom]]
-            [reagent.dom :as rd]
+  (:require [reagent.dom :as rd]
             [re-frame.core :as re-frame]
             [re-pressed.core :as rp]
             [app.renderer.events :as events]
