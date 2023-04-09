@@ -1,5 +1,7 @@
 # Typomaniac
 
+![Screenshot](Screenshot 2023-04-09 053636.png)
+
 There are things I hate about every text editor, and for years I used [my own console editor](http://github.com/btowerscoding/bob). However, in the last few years I've gotten used to VSCode because of its outstanding Clojure integration thanks to [Calva](https://calva.io/). But... it's VSCode, which means if I don't like something about it that's too bad. And honestly... it's that it does way too much. I just want my editor to do like 3 things. So I finally realized I had all the tools lying around to throw this together. Uses [Codemirror 6](https://codemirror.net/), NextJournal's [clojure-mode](https://github.com/nextjournal/clojure-mode), and the [Small Clojure Interpreter (SCI)](https://github.com/babashka/sci).
 
 ## Status
