@@ -102,31 +102,47 @@
     [:div 
      [load]
      [:button
-      {:on-click #(let [file-blob (js/Blob. [(str (some-> @!points .-state .-doc str))] #js {"type" "text/plain"})
+      {:style {:color "white"
+               :padding "4px"
+               :background-color "violet"
+               :background-image "linear-gradient(to top left,
+             rgba(0, 0, 0, .2),
+             rgba(0, 0, 0, .2) 30%,
+             rgba(0, 0, 0, 0))"
+               :font-size "14px"
+               :text-shadow "1px 1px 1px #000"
+               :border-radius "10px"
+               :box-shadow "inset 2px 2px 3px rgba(255, 255, 255, .6),
+             inset -2px -2px 3px rgba(0, 0, 0, .6)"}
+       :on-click #(let [file-blob (js/Blob. [(str (some-> @!points .-state .-doc str))] #js {"type" "text/plain"})
                         link (.createElement js/document "a")]
                     (set! (.-href link) (.createObjectURL js/URL file-blob))
                     (.setAttribute link "download" "mecca.txt")
                     (.appendChild (.-body js/document) link)
                     (.click link)
                     (.removeChild (.-body js/document) link))}
-      (str "Save"  (gstring/unescapeEntities "&nbsp;")
-           ;; TODO: come up with a better way to add padding than this
-           (gstring/unescapeEntities "&nbsp;")
-           (gstring/unescapeEntities "&nbsp;")
-           (gstring/unescapeEntities "&nbsp;")
-           (gstring/unescapeEntities "&nbsp;")
-           (gstring/unescapeEntities "&nbsp;")
-           (gstring/unescapeEntities "&nbsp;"))]
+      "Save"]
      [:button
-      {:on-click #(swap! key-bindings? not)}
+      {:style {:color "white"
+               :padding "4px"
+               :background-color "violet"
+               :background-image "linear-gradient(to top left,
+             rgba(0, 0, 0, .2),
+             rgba(0, 0, 0, .2) 30%,
+             rgba(0, 0, 0, 0))"
+               :font-size "14px"
+               :text-shadow "1px 1px 1px #000"
+               :border-radius "10px"
+               :box-shadow "inset 2px 2px 3px rgba(255, 255, 255, .6),
+             inset -2px -2px 3px rgba(0, 0, 0, .6)"}
+       :on-click #(swap! key-bindings? not)}
       (str  (gstring/unescapeEntities "&nbsp;") 
             (gstring/unescapeEntities "&nbsp;")
+            (str (if @key-bindings? "Hide " "Show ") "key bindings")
             (gstring/unescapeEntities "&nbsp;")
-            (gstring/unescapeEntities "&nbsp;")
-            (gstring/unescapeEntities "&nbsp;")
-            (gstring/unescapeEntities "&nbsp;")
-            (str (if @key-bindings? "Hide " "Show ") "key bindings"))]
+            (gstring/unescapeEntities "&nbsp;"))]
      [sci-editor/editor demo !points {:eval? true}]
    (when @key-bindings?
      [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))])
-     [:div (str @!debug)]])
+     ;[:div (str @!debug)]
+     ])
