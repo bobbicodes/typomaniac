@@ -8,6 +8,7 @@
             [re-frame.core :refer [subscribe]]
             [app.renderer.subs :as subs]
             [sci.impl.evaluator]
+            [goog.string :as gstring]
             [clojure.string :as str]))
 
 (defonce last-result (r/atom ""))
@@ -55,11 +56,11 @@
     (some->> (eval-region/cursor-node-string state)
              (eval-string)
              (on-result))
-    (update-editor! (str (subs code 0 (count code))
+    (update-editor! (str (subs code 0 cursor-pos)
                          (when-not (= "" @last-result) " => ")
                          @last-result
                          (reset! eval-tail (subs code cursor-pos (count code)))))
-    (.dispatch @!points #js{:selection #js{:anchor (count code) :head (count code)}}))
+    (.dispatch @!points #js{:selection #js{:anchor cursor-pos :head cursor-pos}}))
   true)
 
 (j/defn eval-top-level [on-result ^:js {:keys [state]}]

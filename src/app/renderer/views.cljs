@@ -121,7 +121,9 @@
                     (.appendChild (.-body js/document) link)
                     (.click link)
                     (.removeChild (.-body js/document) link))}
-      "Save"]
+      (str  (gstring/unescapeEntities "&nbsp;")
+            "Save"
+            (gstring/unescapeEntities "&nbsp;"))]
      [:button
       {:style {:color "white"
                :padding "4px"
