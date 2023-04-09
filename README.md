@@ -24,7 +24,7 @@ npx electron .
 ## Release
 ```
 npm run build
-npx electron-packager . typomaniac --all
+npx electron-packager . typomaniac --platform=win32 --arch=x64   
 ```
 
 ### Project Overview

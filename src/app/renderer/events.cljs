@@ -17,16 +17,10 @@
    db/default-db))
 
 (re-frame/reg-event-db
- ::set-result
- (fn [db [_ s]]
-   (update-editor! (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => "))
-                        (when-not (= "" @last-result) " => ") @last-result))
-   (assoc db :eval-result (str (eval-all (str (some-> @!points .-state .-doc str)))))))
-
-(re-frame/reg-event-db
  ::clear-result
  (fn [db [_]]
    (when (not= "" @last-result)
      (reset! last-result "")
-     (update-editor! (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")) @eval-tail)))
+     (update-editor! (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")) @eval-tail)
+                     (count (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")) @eval-tail))))
    (assoc db :eval-result "")))

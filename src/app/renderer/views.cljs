@@ -94,7 +94,19 @@
             reader (js/FileReader.)]
         (.readAsText reader file)
         (set! (.-onload reader)
-              #(update-editor! (-> % .-target .-result)))))}])
+              #(update-editor! (str/trim (-> % .-target .-result)) 0))))}])
+
+#_(defn load []
+  [:input#input
+   {:type      "file"
+    :on-change
+    (fn [e]
+      (let [dom    (o/get e "target")
+            file   (o/getValueByKeys dom #js ["files" 0])
+            reader (js/FileReader.)]
+        (.readAsText reader file)
+        (set! (.-onload reader)
+              #(update-editor! "(range 8) "))))}])
 
 (def key-bindings? (r/atom false))
 

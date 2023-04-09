@@ -5,7 +5,6 @@
             [nextjournal.clojure-mode.extensions.eval-region :as eval-region]
             [sci.core :as sci]
             [reagent.core :as r]
-            [re-frame.core :refer [subscribe]]
             [app.renderer.subs :as subs]
             [sci.impl.evaluator]
             [goog.string :as gstring]
@@ -44,9 +43,14 @@
 
 (defonce eval-tail (atom nil))
 
-(defn update-editor! [text]
-  (let [cursor-pos (count text)
+#_(defn update-editor! [text]
+  (let [cursor-pos (count (str/trim text))
         end (count (some-> @!points .-state .-doc str))]
+    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
+                            :selection #js{:anchor cursor-pos :head cursor-pos}})))
+
+(defn update-editor! [text cursor-pos]
+  (let [end (count (some-> @!points .-state .-doc str))]
     (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
                             :selection #js{:anchor cursor-pos :head cursor-pos}})))
 
@@ -59,7 +63,8 @@
     (update-editor! (str (subs code 0 cursor-pos)
                          (when-not (= "" @last-result) " => ")
                          @last-result
-                         (reset! eval-tail (subs code cursor-pos (count code)))))
+                         (reset! eval-tail (subs code cursor-pos (count code))))
+                    cursor-pos)
     (.dispatch @!points #js{:selection #js{:anchor cursor-pos :head cursor-pos}}))
   true)
 

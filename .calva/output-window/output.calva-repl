@@ -5,6 +5,201 @@
 ; Happy coding! ♥️
 
 ; Jacking in...
-; Aborting jack-in. No project type selected.
-; Jacking in...
-; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.27.4 watch :main :renderer
+; Connecting using "shadow-cljs" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer
+; Using host:port localhost:63151 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+clj꞉shadow.user꞉>  ; Use `alt+enter` to evaluate
+; Creating cljs repl session...
+; Connecting cljs repl: shadow-cljs...
+;   The Calva Connection Log might have more connection progress information.
+; Connected session: cljs, repl: :main
+; TIPS: You can choose which REPL to use (clj or cljs):
+;    *Calva: Toggle REPL connection*
+;    (There is a button in the status bar for this)
+; Jack-in done.
+cljs꞉cljs.user꞉>  ; Use `alt+enter` to evaluate
+nil
+; ------ WARNING - :undeclared-ns ------------------------------------------------
+;  Resource: <eval>:6:21
+;  No such namespace: o, could not locate o.cljs, o.cljc, or JavaScript source providing "o"
+; --------------------------------------------------------------------------------
+; 
+; 
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:6:21
+;  Use of undeclared Var o/get
+; --------------------------------------------------------------------------------
+; 
+; 
+; ------ WARNING - :undeclared-ns ------------------------------------------------
+;  Resource: <eval>:7:21
+;  No such namespace: o, could not locate o.cljs, o.cljc, or JavaScript source providing "o"
+; --------------------------------------------------------------------------------
+; 
+; 
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:7:21
+;  Use of undeclared Var o/getValueByKeys
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:2
+;  Use of undeclared Var app.renderer.views/update-editor!
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:2
+;  Use of undeclared Var app.renderer.views/update-editor!
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:2
+;  Use of undeclared Var app.renderer.views/update-editor!
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:2
+;  Use of undeclared Var app.renderer.views/update-editor!
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:1:2
+;  Use of undeclared Var app.renderer.views/update-editor!
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+nil
+; ------ WARNING - :infer-warning ------------------------------------------------
+;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:49:5
+;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x6eb315f7 "cljs.tagged_literals.JSValue@6eb315f7"])
+; --------------------------------------------------------------------------------
+; 
+; 
+; ------ WARNING - :infer-warning ------------------------------------------------
+;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:62:5
+;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x77476441 "cljs.tagged_literals.JSValue@77476441"])
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+nil
+; ------ WARNING - :infer-warning ------------------------------------------------
+;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:49:5
+;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x6eb315f7 "cljs.tagged_literals.JSValue@6eb315f7"])
+; --------------------------------------------------------------------------------
+; 
+; 
+; ------ WARNING - :infer-warning ------------------------------------------------
+;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:62:5
+;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x77476441 "cljs.tagged_literals.JSValue@77476441"])
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; Cannot read properties of undefined (reading '_BANG_points')
+cljs꞉app.renderer.sci꞉> 
+nil
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/last-result
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/eval-result
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/context
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/max-seq-limit
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/instrument-1
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/instrument-eval
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/eval-string
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/!points
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/eval-tail
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/update-editor!
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/eval-at-cursor
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/eval-top-level
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/eval-cell
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/keymap*
+cljs꞉app.renderer.sci꞉> 
+nil
+; ------ WARNING - :infer-warning ------------------------------------------------
+;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:49:5
+;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x6eb315f7 "cljs.tagged_literals.JSValue@6eb315f7"])
+; --------------------------------------------------------------------------------
+; 
+; 
+; ------ WARNING - :infer-warning ------------------------------------------------
+;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:62:5
+;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x77476441 "cljs.tagged_literals.JSValue@77476441"])
+; --------------------------------------------------------------------------------
+; 
+cljs꞉app.renderer.views꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; cljs.core.deref.call(...).dispatch is not a function
+cljs꞉app.renderer.views꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; cljs.core.deref.call(...).dispatch is not a function
+cljs꞉app.renderer.views꞉> 
+nil
+cljs꞉app.renderer.sci꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; cljs.core.deref.call(...).dispatch is not a function
+cljs꞉app.renderer.sci꞉> 
+#'app.renderer.sci/update-editor!
+cljs꞉app.renderer.sci꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; cljs.core.deref.call(...).dispatch is not a function
+cljs꞉app.renderer.sci꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; cljs.core.deref.call(...).dispatch is not a function
+cljs꞉app.renderer.sci꞉> 
+""
+cljs꞉app.renderer.sci꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; cljs.core.deref.call(...).dispatch is not a function
+cljs꞉app.renderer.sci꞉> 
+; nREPL connection failed: Error: read ECONNRESET
+; Failed connecting.
+; nREPL Connection was closed
