@@ -4,7 +4,7 @@ There are things I hate about every text editor, and for years I used [my own co
 
 ## Status
 
-Working. It load/save/edits text files. Currently available for Windows x64
+Working. It load/save/edits text files. Evaluation works too! Currently available for Windows x64
 
 ## Download
 
