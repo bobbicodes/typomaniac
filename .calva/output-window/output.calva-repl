@@ -229,3 +229,33 @@ clj꞉shadow.user꞉> 
 ;    (There is a button in the status bar for this)
 ; Jack-in done.
 cljs꞉cljs.user꞉> 
+#js [#object[LezerLanguage [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[LezerLanguage [object Object]] #object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+#object[Array]
+clj꞉app.renderer.sci-editor꞉> 
+#object[LezerLanguage [object Object]]
+clj꞉app.renderer.sci-editor꞉> 
+(#object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]])
+clj꞉app.renderer.sci-editor꞉> 
+(#object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]])
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[LezerLanguage [object Object]] #object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+(#js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]])
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js [#js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[LezerLanguage [object Object]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[LezerLanguage [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[LezerLanguage [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
+clj꞉app.renderer.sci-editor꞉> 

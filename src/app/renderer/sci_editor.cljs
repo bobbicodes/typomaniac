@@ -45,7 +45,10 @@
      ;; use live-reloading grammar
       #js [(cm-clj/syntax live-grammar/parser)
            (.slice cm-clj/default-extensions 1)]
-      cm-clj/default-extensions)
+      ;; to disable enforced paren balancing, we remove the
+      ;; second element of the `cm-clj/default-extensions` array
+      (.concat (.slice cm-clj/default-extensions 0 1)
+               (.slice cm-clj/default-extensions 2)))
     (.of view/keymap cm-clj/complete-keymap)
     (.of view/keymap historyKeymap)])
 

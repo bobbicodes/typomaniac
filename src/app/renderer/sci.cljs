@@ -5,9 +5,7 @@
             [nextjournal.clojure-mode.extensions.eval-region :as eval-region]
             [sci.core :as sci]
             [reagent.core :as r]
-            [app.renderer.subs :as subs]
             [sci.impl.evaluator]
-            [goog.string :as gstring]
             [clojure.string :as str]))
 
 (defonce last-result (r/atom ""))
