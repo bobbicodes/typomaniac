@@ -3,30 +3,18 @@
    [reagent.core :as r]
    [re-frame.core :as re-frame]
    [re-pressed.core :as rp]
-   [app.renderer.events :as events :refer [!debug]]
-   [app.renderer.subs :as subs]
+   [app.renderer.events :as events]
    [app.renderer.sci :refer [!points update-editor!]]
-   [app.renderer.sci-editor :as sci-editor :refer [points !result]]
+   [app.renderer.sci-editor :as sci-editor]
    [nextjournal.clojure-mode.keymap :as keymap]
    [goog.object :as o]
    [clojure.string :as str]
    [goog.string :as gstring]))
 
-(defn dispatch-keydown-rules []
-  (re-frame/dispatch
-    [::rp/set-keydown-rules
-     {:event-keys
-      (conj (into []
-                  (for [n (into [8 27 32 37 38 39 40] (range 40 100))]
-                    [[::events/clear-result]
-                     [{:keyCode n}]]))
-            ;[[::events/cursor-right] [{:keyCode 39}]]
-            )
-;      :always-listen-keys [{:keyCode   13 :shiftKey true}]
-;      :prevent-default-keys [{:keyCode   13 :shiftKey true}]
-      }]))
-
-(dispatch-keydown-rules)
+(re-frame/dispatch [::rp/set-keydown-rules
+                    {:event-keys (into [] (for [n (into [8 27 32 37 38 39 40] (range 40 100))]
+                                            [[::events/clear-result]
+                                             [{:keyCode n}]]))}])
 
 (def demo "(map inc (range 8))")
 
@@ -96,67 +84,43 @@
         (set! (.-onload reader)
               #(update-editor! (str/trim (-> % .-target .-result)) 0))))}])
 
-#_(defn load []
-  [:input#input
-   {:type      "file"
-    :on-change
-    (fn [e]
-      (let [dom    (o/get e "target")
-            file   (o/getValueByKeys dom #js ["files" 0])
-            reader (js/FileReader.)]
-        (.readAsText reader file)
-        (set! (.-onload reader)
-              #(update-editor! "(range 8) "))))}])
-
 (def key-bindings? (r/atom false))
+
+(defn button [label on-click color]
+  [:button
+   {:style {:color "white"
+            :padding "4px"
+            :background-color color
+            :background-image "linear-gradient(to top left,
+             rgba(0, 0, 0, .2),
+             rgba(0, 0, 0, .2) 30%,
+             rgba(0, 0, 0, 0))"
+            :font-size "14px"
+            :text-shadow "1px 1px 1px #000"
+            :border-radius "10px"
+            :box-shadow "inset 2px 2px 3px rgba(255, 255, 255, .6),
+             inset -2px -2px 3px rgba(0, 0, 0, .6)"}
+    :on-click on-click}
+   label])
+
+(defonce files (r/atom [{:filename "untitled1.clj" :viewer !points}]))
+(defonce file (r/atom 0))
 
 (defn main-panel []
     [:div 
-     [load]
-     [:button
-      {:style {:color "white"
-               :padding "4px"
-               :background-color "violet"
-               :background-image "linear-gradient(to top left,
-             rgba(0, 0, 0, .2),
-             rgba(0, 0, 0, .2) 30%,
-             rgba(0, 0, 0, 0))"
-               :font-size "14px"
-               :text-shadow "1px 1px 1px #000"
-               :border-radius "10px"
-               :box-shadow "inset 2px 2px 3px rgba(255, 255, 255, .6),
-             inset -2px -2px 3px rgba(0, 0, 0, .6)"}
-       :on-click #(let [file-blob (js/Blob. [(str (some-> @!points .-state .-doc str))] #js {"type" "text/plain"})
-                        link (.createElement js/document "a")]
-                    (set! (.-href link) (.createObjectURL js/URL file-blob))
-                    (.setAttribute link "download" "mecca.txt")
-                    (.appendChild (.-body js/document) link)
-                    (.click link)
-                    (.removeChild (.-body js/document) link))}
-      (str  (gstring/unescapeEntities "&nbsp;")
-            "Save"
-            (gstring/unescapeEntities "&nbsp;"))]
-     [:button
-      {:style {:color "white"
-               :padding "4px"
-               :background-color "violet"
-               :background-image "linear-gradient(to top left,
-             rgba(0, 0, 0, .2),
-             rgba(0, 0, 0, .2) 30%,
-             rgba(0, 0, 0, 0))"
-               :font-size "14px"
-               :text-shadow "1px 1px 1px #000"
-               :border-radius "10px"
-               :box-shadow "inset 2px 2px 3px rgba(255, 255, 255, .6),
-             inset -2px -2px 3px rgba(0, 0, 0, .6)"}
-       :on-click #(swap! key-bindings? not)}
-      (str  (gstring/unescapeEntities "&nbsp;") 
-            (gstring/unescapeEntities "&nbsp;")
-            (str (if @key-bindings? "Hide " "Show ") "key bindings")
-            (gstring/unescapeEntities "&nbsp;")
-            (gstring/unescapeEntities "&nbsp;"))]
-     [sci-editor/editor demo !points {:eval? true}]
-   (when @key-bindings?
-     [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))])
-     ;[:div (str @!debug)]
-     ])
+     [button "New" #() "violet"]
+     [button "Open" #() "violet"]
+     [button "Options" #() "violet"]
+     [button "Save"
+      #(let [file-blob (js/Blob. [(str (some-> (deref (:viewer (@files @file))) .-state .-doc str))] #js {"type" "text/plain"})
+             link      (.createElement js/document "a")]
+         (set! (.-href link) (.createObjectURL js/URL file-blob))
+         (.setAttribute link "download" (:filename (@files @file)))
+         (.appendChild (.-body js/document) link)
+         (.click link)
+         (.removeChild (.-body js/document) link)) "violet"]
+     (gstring/unescapeEntities "&emsp;&emsp;")
+     [button (:filename (@files @file)) #() "purple"]
+     [sci-editor/editor "" (:viewer (@files @file)) {:eval? true}]
+     (when @key-bindings?
+       [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))])])

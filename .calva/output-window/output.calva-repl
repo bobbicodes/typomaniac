@@ -273,3 +273,64 @@ clj꞉app.renderer.events꞉> 
 clj꞉app.renderer.events꞉> 
 18
 clj꞉app.renderer.events꞉> 
+; nREPL connection failed: Error: read ECONNRESET
+; Failed connecting.
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "shadow-cljs" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer
+; Using host:port localhost:61728 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+clj꞉shadow.user꞉> 
+; Creating cljs repl session...
+; Connecting cljs repl: shadow-cljs...
+;   The Calva Connection Log might have more connection progress information.
+; Connected session: cljs, repl: :renderer
+; TIPS: You can choose which REPL to use (clj or cljs):
+;    *Calva: Toggle REPL connection*
+;    (There is a button in the status bar for this)
+; Jack-in done.
+cljs꞉cljs.user꞉> 
+#'app.renderer.views/main-panel
+clj꞉app.renderer.views꞉> 
+11
+clj꞉app.renderer.views꞉> 
+11
+clj꞉app.renderer.views꞉> 
+11
+clj꞉app.renderer.views꞉> 
+
+; Timeout while waiting for result.
+clj꞉app.renderer.views꞉> 
+
+; Timeout while waiting for result.
+clj꞉app.renderer.views꞉> 
+
+; Timeout while waiting for result.
+clj꞉app.renderer.views꞉> 
+
+; Timeout while waiting for result.
+clj꞉app.renderer.views꞉> 
+
+; Timeout while waiting for result.
+clj꞉app.renderer.views꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+; 2.call is not a function
+clj꞉app.renderer.views꞉> 
+"up"
+clj꞉app.renderer.views꞉> 
+nil
+clj꞉app.renderer.views꞉> 

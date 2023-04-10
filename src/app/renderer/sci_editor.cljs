@@ -1,16 +1,13 @@
 (ns app.renderer.sci-editor
   (:require ["@codemirror/fold" :as fold]
-            ["@codemirror/closebrackets" :refer [closeBrackets]]
             ["@codemirror/gutter" :refer [lineNumbers]]
             ["@codemirror/highlight" :as highlight]
             ["@codemirror/history" :refer [history historyKeymap]]
             ["@codemirror/state" :refer [EditorState EditorSelection]]
             ["@codemirror/view" :as view :refer [EditorView]]
-            [app.renderer.sci :as sci :refer [eval-result !points last-result]]
-            [re-frame.core :as rf :refer [subscribe dispatch]]
+            [app.renderer.sci :as sci :refer [eval-result last-result]]
             [clojure.string :as str]
             [applied-science.js-interop :as j]
-            [nextjournal.clojure-mode.extensions.close-brackets :as close-brackets]
             [nextjournal.clojure-mode :as cm-clj]
             [nextjournal.clojure-mode.live-grammar :as live-grammar]
             [reagent.core :as r]))
@@ -57,7 +54,6 @@
                           (reduce (fn [[^string doc ranges] match]
                                     (cond (= match "|")
                                           [(str doc) (conj ranges (.cursor EditorSelection (count doc)))]
-
                                           (str/starts-with? match "<")
                                           [(str doc (subs match 1 (dec (count match))))
                                            (conj ranges (.range EditorSelection
@@ -112,8 +108,3 @@
      (when eval?
        (reset! eval-result @last-result))]
     (finally (j/call @!view :destroy))))
-
-(defonce !result (r/atom ""))
-
-(defonce points
-  (r/atom []))
