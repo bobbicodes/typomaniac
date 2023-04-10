@@ -19,21 +19,6 @@
   (sci/init {:classes {'js goog/global :allow :all}
              :namespaces {'max-or-throw.core {'max-or-throw max-or-throw}}}))
 
-(def max-seq-limit 10000)
-
-(defn instrument-1 [form]
-  (if (seq? form)
-    (list 'max-or-throw.core/max-or-throw form max-seq-limit)
-    form))
-
-;; Note from @borkdude: this is a hack. We intercept each result from the
-;; evaluator and wrap it in a call to max-or-throw.
-(defonce instrument-eval
-  (let [old-eval sci.impl.evaluator/eval]
-    (set! sci.impl.evaluator/eval
-          (fn [ctx bindings expr]
-            (max-or-throw (old-eval ctx bindings expr) 10000)))))
-
 (defn eval-string [source]
   (try (sci/eval-string* context source)
        (catch :default e
