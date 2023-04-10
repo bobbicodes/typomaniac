@@ -22,5 +22,5 @@
    (when (not= "" @last-result)
      (reset! last-result "")
      (update-editor! (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")) @eval-tail)
-                     (count (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")) @eval-tail))))
+                    (some-> @!points .-state .-selection .-main .-head)))
    (assoc db :eval-result "")))

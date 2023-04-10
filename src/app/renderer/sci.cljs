@@ -43,12 +43,6 @@
 
 (defonce eval-tail (atom nil))
 
-#_(defn update-editor! [text]
-  (let [cursor-pos (count (str/trim text))
-        end (count (some-> @!points .-state .-doc str))]
-    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
-                            :selection #js{:anchor cursor-pos :head cursor-pos}})))
-
 (defn update-editor! [text cursor-pos]
   (let [end (count (some-> @!points .-state .-doc str))]
     (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
