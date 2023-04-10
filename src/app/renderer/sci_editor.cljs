@@ -47,8 +47,8 @@
            (.slice cm-clj/default-extensions 1)]
       ;; to disable enforced paren balancing, we remove the
       ;; second element of the `cm-clj/default-extensions` array
-      (.concat (.slice cm-clj/default-extensions 0 1)
-               (.slice cm-clj/default-extensions 2)))
+      #js [(.slice cm-clj/default-extensions 0 1)
+           (.slice cm-clj/default-extensions 2)])
     (.of view/keymap cm-clj/complete-keymap)
     (.of view/keymap historyKeymap)])
 

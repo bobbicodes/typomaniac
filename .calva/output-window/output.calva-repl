@@ -259,3 +259,17 @@ clj꞉app.renderer.sci-editor꞉> 
 clj꞉app.renderer.sci-editor꞉> 
 #js [#object[LezerLanguage [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
 clj꞉app.renderer.sci-editor꞉> 
+19
+clj꞉app.renderer.events꞉> 
+"(map inc (range 8))"
+clj꞉app.renderer.events꞉> 
+19
+clj꞉app.renderer.events꞉> 
+19
+clj꞉app.renderer.events꞉> 
+19
+clj꞉app.renderer.events꞉> 
+19
+clj꞉app.renderer.events꞉> 
+18
+clj꞉app.renderer.events꞉> 

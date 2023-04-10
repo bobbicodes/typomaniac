@@ -21,6 +21,8 @@
  (fn [db [_]]
    (when (not= "" @last-result)
      (reset! last-result "")
-     (update-editor! (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")) @eval-tail)
-                    (some-> @!points .-state .-selection .-main .-head)))
+     (let [code (str (first (str/split (str (some-> @!points .-state .-doc str)) #" => ")) @eval-tail)
+           cursor-pos (some-> @!points .-state .-selection .-main .-head)]
+       (update-editor! code
+                       (min cursor-pos (count code)))))
    (assoc db :eval-result "")))
