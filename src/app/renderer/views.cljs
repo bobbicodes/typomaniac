@@ -4,7 +4,7 @@
    [re-frame.core :as re-frame]
    [re-pressed.core :as rp]
    [app.renderer.events :as events]
-   [app.renderer.sci :refer [!points update-editor!]]
+   [app.renderer.sci :refer [update-editor! files file]]
    [app.renderer.sci-editor :as sci-editor]
    [nextjournal.clojure-mode.keymap :as keymap]
    [goog.object :as o]
@@ -15,8 +15,6 @@
                     {:event-keys (into [] (for [n (into [8 27 32 37 38 39 40] (range 40 100))]
                                             [[::events/clear-result]
                                              [{:keyCode n}]]))}])
-
-(def demo "(map inc (range 8))")
 
 (defn linux? []
   (some? (re-find #"(Linux)|(X11)" js/navigator.userAgent)))
@@ -103,12 +101,15 @@
     :on-click on-click}
    label])
 
-(defonce files (r/atom [{:filename "untitled1.clj" :viewer !points}]))
-(defonce file (r/atom 0))
+(defn new-file []
+  (swap! files conj {:filename (str "untitled" (+ 2 @file) ".clj") :viewer (r/atom "")})
+  (swap! file inc))
+
+(@files @file)
 
 (defn main-panel []
     [:div 
-     [button "New" #() "violet"]
+     [button "New" #(new-file) "violet"]
      [button "Open" #() "violet"]
      [button "Options" #() "violet"]
      [button "Save"
@@ -120,7 +121,12 @@
          (.click link)
          (.removeChild (.-body js/document) link)) "violet"]
      (gstring/unescapeEntities "&emsp;&emsp;")
-     [button (:filename (@files @file)) #() "purple"]
-     [sci-editor/editor "" (:viewer (@files @file)) {:eval? true}]
+     (into [:span]
+           (for [n (range (count @files))]
+             [button (:filename (get @files n)) #(reset! file n) (if (= n @file) "purple" "violet")]))
+     (into [:div]
+           (for [n (range (count @files))]
+             [sci-editor/editor "" (:viewer (get @files n)) {:eval? true
+                                                   :visible? (if (= n @file) true false)}]))
      (when @key-bindings?
        [key-bindings-table (merge keymap/paredit-keymap* (app.renderer.sci/keymap* "Alt"))])])

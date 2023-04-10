@@ -334,3 +334,21 @@ clj꞉app.renderer.views꞉> 
 clj꞉app.renderer.views꞉> 
 nil
 clj꞉app.renderer.views꞉> 
+[{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]}]
+clj꞉app.renderer.views꞉> 
+[{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]} {"untitled2.clj" #object[reagent.ratom.RAtom {:val ""}]}]
+clj꞉app.renderer.views꞉> 
+{"untitled4.clj" #object[reagent.ratom.RAtom {:val ""}]}
+clj꞉app.renderer.views꞉> 
+{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]}
+clj꞉app.renderer.views꞉> 
+{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]}
+clj꞉app.renderer.views꞉> 
+{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
+clj꞉app.renderer.views꞉> 
+{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
+clj꞉app.renderer.views꞉> 
+{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
+clj꞉app.renderer.views꞉> 
+{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
+clj꞉app.renderer.views꞉> 

@@ -78,7 +78,7 @@
          (str e))))
 
 (defn editor
-  [source !view {:keys [eval?]}]
+  [source !view {:keys [eval? visible?]}]
   (r/with-let
     [mount!
      (fn [el]
@@ -102,7 +102,7 @@
     [:div
      [:div {:class "rounded-md mb-0 text-sm monospace overflow-auto relative border shadow-lg bg-white"
             :ref   mount!
-            :style {
+            :style {:display (if visible? "block" "none")
                     ;:max-height 860
                     :background-color "#F8B0F8"}}]
      (when eval?

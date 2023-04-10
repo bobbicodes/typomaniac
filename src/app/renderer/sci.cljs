@@ -8,6 +8,9 @@
             [sci.impl.evaluator]
             [clojure.string :as str]))
 
+(defonce files (r/atom [{:filename "untitled1.clj" :viewer (r/atom "")}]))
+(defonce file (r/atom 0))
+
 (defonce last-result (r/atom ""))
 
 (def eval-result
@@ -22,18 +25,16 @@
        (catch :default e
          (str e))))
 
-(defonce !points (r/atom ""))
-
 (defonce eval-tail (atom nil))
 
 (defn update-editor! [text cursor-pos]
-  (let [end (count (some-> @!points .-state .-doc str))]
-    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
+  (let [end (count (some-> (deref (:viewer (@files @file))) .-state .-doc str))]
+    (.dispatch (deref (:viewer (@files @file))) #js{:changes #js{:from 0 :to end :insert text}
                             :selection #js{:anchor cursor-pos :head cursor-pos}})))
 
 (j/defn eval-at-cursor [on-result ^:js {:keys [state]}]
-  (let [cursor-pos (some-> @!points .-state .-selection .-main .-head)
-        code (first (str/split (str (some-> @!points .-state .-doc str)) #" => "))]
+  (let [cursor-pos (some-> (deref (:viewer (@files @file))) .-state .-selection .-main .-head)
+        code (first (str/split (str (some-> (deref (:viewer (@files @file))) .-state .-doc str)) #" => "))]
     (some->> (eval-region/cursor-node-string state)
              (eval-string)
              (on-result))
@@ -42,7 +43,7 @@
                          @last-result
                          (reset! eval-tail (subs code cursor-pos (count code))))
                     cursor-pos)
-    (.dispatch @!points #js{:selection #js{:anchor cursor-pos :head cursor-pos}}))
+    (.dispatch (deref (:viewer (@files @file))) #js{:selection #js{:anchor cursor-pos :head cursor-pos}}))
   true)
 
 (j/defn eval-top-level [on-result ^:js {:keys [state]}]
