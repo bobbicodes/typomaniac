@@ -115,7 +115,7 @@
           :fill color} name])
 
 (defn tab [index s x color]
-      (let [width (max 10 (+ 3 (* 1.5 (count s))))
+      (let [width (max 7 (+ 3 (* 1.5 (count s))))
             hover (r/atom nil)]
         (fn []
           [:g [:rect {:x      x :y      0.5
@@ -131,7 +131,7 @@
                      :fill "red" :stroke-width 0.1 :stroke "black"}])
            ;; "X" in corner of tab to close
            [:path {:transform (str "translate(" (+ width x -2.8) "," 0 ")")
-                   :d "M1 1L2.5 2.5M2.5 1L1 2.5" :stroke "black" :stroke-width 0.1}]
+                   :d "M1 1L2.5 2.5M2.5 1L1 2.5" :stroke "black" :stroke-width (if (= index @hover) 0.3 0.1)}]
          ;; hover/click target
            [:rect {:x (+ width x -3) :y 0.5 :width 3 :height 3 :visibility "hidden"
                    :pointer-events "all"
@@ -157,9 +157,9 @@
               [button (:filename (get @files n)) #(reset! file n) (if (= n @file) "purple" "violet")]))]
       [:svg {:width "100%" :view-box "0 0 100 5"}
        [tab 0 "t" 0 "#F8B0F8"]
-       [tab 1 "test" 11 "violet"]
-       [tab 2 "untitled3.clj" 22 "violet"]
-       [tab 3 "very_long_file_name_foo.txt" 45.5 "violet"]]
+       [tab 1 "test" 7 "violet"]
+       [tab 2 "untitled3.clj" 16 "violet"]
+       [tab 3 "very_long_file_name_foo.txt" 38.5 "violet"]]
      (into [:div]
            (for [n (range (count @files))]
              [sci-editor/editor "" (:viewer (get @files n)) {:eval? true
