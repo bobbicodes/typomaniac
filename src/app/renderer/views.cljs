@@ -105,25 +105,46 @@
   (swap! files conj {:filename (str "untitled" (+ 2 @file) ".clj") :viewer (r/atom "")})
   (swap! file inc))
 
-(@files @file)
+(defn text
+  [name x y color]
+  [:text {:id name
+          :x (inc x) :y (inc y) :dy "0.9em"  :text-anchor "left"
+          :font-family "monospace"
+          :pointer-events "none"
+          :font-size "2.5px"
+          :fill color} name])
+
+(defn tab [s x color]
+  [:g [:rect {:x      x
+              :y      0.5
+              :width  (+ 2 (* 1.5 (count s)))
+              :height 28
+              :cursor "pointer"
+              :fill   color}]
+   [text s x 0 (if (= color "purple") "white" "black")]])
 
 (defn main-panel []
     [:div 
-     [button "New" #(new-file) "violet"]
-     [button "Open" #() "violet"]
-     [button "Options" #() "violet"]
-     [button "Save"
-      #(let [file-blob (js/Blob. [(str (some-> (deref (:viewer (@files @file))) .-state .-doc str))] #js {"type" "text/plain"})
-             link      (.createElement js/document "a")]
-         (set! (.-href link) (.createObjectURL js/URL file-blob))
-         (.setAttribute link "download" (:filename (@files @file)))
-         (.appendChild (.-body js/document) link)
-         (.click link)
-         (.removeChild (.-body js/document) link)) "violet"]
-     (gstring/unescapeEntities "&emsp;&emsp;")
-     (into [:span]
-           (for [n (range (count @files))]
-             [button (:filename (get @files n)) #(reset! file n) (if (= n @file) "purple" "violet")]))
+     #_[:div [button "New" #(new-file) "violet"]
+      [button "Open" #() "violet"]
+      [button "Options" #() "violet"]
+      [button "Save"
+       #(let [file-blob (js/Blob. [(str (some-> (deref (:viewer (@files @file))) .-state .-doc str))] #js {"type" "text/plain"})
+              link      (.createElement js/document "a")]
+          (set! (.-href link) (.createObjectURL js/URL file-blob))
+          (.setAttribute link "download" (:filename (@files @file)))
+          (.appendChild (.-body js/document) link)
+          (.click link)
+          (.removeChild (.-body js/document) link)) "violet"]
+      (gstring/unescapeEntities "&emsp;&emsp;")
+      (into [:span]
+            (for [n (range (count @files))]
+              [button (:filename (get @files n)) #(reset! file n) (if (= n @file) "purple" "violet")]))]
+      [:svg {:width "100%" :view-box "0 0 100 5"}
+       [tab "t" 0 "#F8B0F8"]
+       [tab "test" 4 "violet"]
+       [tab "untitled3.clj" 12.5 "violet"]
+       [tab "very_long_file_name_foo.txt" 34.5 "violet"]]
      (into [:div]
            (for [n (range (count @files))]
              [sci-editor/editor "" (:viewer (get @files n)) {:eval? true

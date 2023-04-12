@@ -352,3 +352,7 @@ clj꞉app.renderer.views꞉> 
 clj꞉app.renderer.views꞉> 
 {:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
 clj꞉app.renderer.views꞉> 
+nil
+clj꞉app.renderer.sci꞉> 
+#'app.renderer.views/main-panel
+clj꞉app.renderer.views꞉> 
