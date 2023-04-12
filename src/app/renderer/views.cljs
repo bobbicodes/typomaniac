@@ -129,7 +129,7 @@
            (when (= index @hover)
              [:rect {:x (+ width x -2.5) :y 0.5 :width 2.5 :height 2.5
                      :fill "red" :stroke-width 0.1 :stroke "black"}])
-           ;; "X" in corner of tab to close
+         ;; "X" in corner of tab to close
            [:path {:transform (str "translate(" (+ width x -2.8) "," 0 ")")
                    :d "M1 1L2.5 2.5M2.5 1L1 2.5" :stroke "black" :stroke-width (if (= index @hover) 0.3 0.1)}]
          ;; hover/click target
@@ -155,7 +155,7 @@
       (into [:span]
             (for [n (range (count @files))]
               [button (:filename (get @files n)) #(reset! file n) (if (= n @file) "purple" "violet")]))]
-      [:svg {:width "100%" :view-box "0 0 100 5"}
+      [:svg {:width 600 :view-box "0 0 100 5"}
        [tab 0 "t" 0 "#F8B0F8"]
        [tab 1 "test" 7 "violet"]
        [tab 2 "untitled3.clj" 16 "violet"]
