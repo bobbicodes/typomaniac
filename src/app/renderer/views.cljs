@@ -114,14 +114,29 @@
           :font-size "2.5px"
           :fill color} name])
 
-(defn tab [s x color]
-  [:g [:rect {:x      x
-              :y      0.5
-              :width  (+ 2 (* 1.5 (count s)))
-              :height 28
-              :cursor "pointer"
-              :fill   color}]
-   [text s x 0 (if (= color "purple") "white" "black")]])
+(defn tab [index s x color]
+      (let [width (max 10 (+ 3 (* 1.5 (count s))))
+            hover (r/atom nil)]
+        (fn []
+          [:g [:rect {:x      x :y      0.5
+                      :width width :height 28
+                      :cursor "pointer" :fill   color}]
+         ;; tab outline
+           [:path {:d (str "M" (+ x 0.1) " 5v -4.5h" width " v5") 
+                   :stroke "black" :stroke-width 0.125 :fill "none"}]
+           [text s x 0 (if (= color "purple") "white" "black")]
+         ;; box appears on mouseover
+           (when (= index @hover)
+             [:rect {:x (+ width x -2.5) :y 0.5 :width 2.5 :height 2.5
+                     :fill "red" :stroke-width 0.1 :stroke "black"}])
+           ;; "X" in corner of tab to close
+           [:path {:transform (str "translate(" (+ width x -2.8) "," 0 ")")
+                   :d "M1 1L2.5 2.5M2.5 1L1 2.5" :stroke "black" :stroke-width 0.1}]
+         ;; hover/click target
+           [:rect {:x (+ width x -3) :y 0.5 :width 3 :height 3 :visibility "hidden"
+                   :pointer-events "all"
+                   :on-mouse-over #(reset! hover index)  
+                   :on-mouse-out #(reset! hover nil)}]])))
 
 (defn main-panel []
     [:div 
@@ -141,10 +156,10 @@
             (for [n (range (count @files))]
               [button (:filename (get @files n)) #(reset! file n) (if (= n @file) "purple" "violet")]))]
       [:svg {:width "100%" :view-box "0 0 100 5"}
-       [tab "t" 0 "#F8B0F8"]
-       [tab "test" 4 "violet"]
-       [tab "untitled3.clj" 12.5 "violet"]
-       [tab "very_long_file_name_foo.txt" 34.5 "violet"]]
+       [tab 0 "t" 0 "#F8B0F8"]
+       [tab 1 "test" 11 "violet"]
+       [tab 2 "untitled3.clj" 22 "violet"]
+       [tab 3 "very_long_file_name_foo.txt" 45.5 "violet"]]
      (into [:div]
            (for [n (range (count @files))]
              [sci-editor/editor "" (:viewer (get @files n)) {:eval? true
