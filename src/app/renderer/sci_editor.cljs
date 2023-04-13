@@ -1,5 +1,6 @@
 (ns app.renderer.sci-editor
   (:require ["@codemirror/fold" :as fold]
+             ["@codemirror/closebrackets" :refer [closeBrackets]]
             ["@codemirror/gutter" :refer [lineNumbers]]
             ["@codemirror/highlight" :as highlight]
             ["@codemirror/history" :refer [history historyKeymap]]
@@ -36,6 +37,7 @@
     highlight/defaultHighlightStyle
     (view/drawSelection)
     (lineNumbers)
+    (closeBrackets)
     (fold/foldGutter)
     (.. EditorState -allowMultipleSelections (of true))
     (if false
@@ -44,8 +46,9 @@
            (.slice cm-clj/default-extensions 1)]
       ;; to disable enforced paren balancing, we remove the
       ;; second element of the `cm-clj/default-extensions` array
-      #js [(.slice cm-clj/default-extensions 0 1)
-           (.slice cm-clj/default-extensions 2)])
+      ;;#js [(.slice cm-clj/default-extensions 0 1)
+       ;;    (.slice cm-clj/default-extensions 2)]
+      cm-clj/default-extensions)
     (.of view/keymap cm-clj/complete-keymap)
     (.of view/keymap historyKeymap)])
 

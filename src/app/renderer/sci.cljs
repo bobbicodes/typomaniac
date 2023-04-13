@@ -13,8 +13,7 @@
 
 (defonce last-result (r/atom ""))
 
-(def eval-result
-  (r/atom ""))
+(def eval-result (r/atom ""))
  
 (defonce context
   (sci/init {:classes {'js goog/global :allow :all}
@@ -43,7 +42,9 @@
                          @last-result
                          (reset! eval-tail (subs code cursor-pos (count code))))
                     cursor-pos)
-    (.dispatch (deref (:viewer (@files @file))) #js{:selection #js{:anchor cursor-pos :head cursor-pos}}))
+    (.dispatch (deref (:viewer (@files @file))) 
+               #js{:selection #js{:anchor cursor-pos
+                                  :head   cursor-pos}}))
   true)
 
 (j/defn eval-top-level [on-result ^:js {:keys [state]}]
@@ -57,6 +58,18 @@
       (eval-string)
       (on-result))
   true)
+
+(defn clear-eval []
+  (when (not= "" @last-result)
+    (reset! last-result "")
+    (let [code (-> (deref (:viewer (@files @file)))
+                   (some-> .-state .-doc str)
+                   str
+                   (str/split #" => ")
+                   first
+                   (str @eval-tail))
+          cursor-pos (some-> (deref (:viewer (@files @file))) .-state .-selection .-main .-head)]
+      (update-editor! code (min cursor-pos (count code))))))
 
 (defn keymap* [modifier]
   {:eval-cell
@@ -78,4 +91,6 @@
           :run (partial eval-top-level on-result)}
          {:key "Enter"
           :shift (partial eval-at-cursor on-result)
-          :run #()}])))
+          :run #()}
+         {:key "Escape"
+          :run #(clear-eval)}])))

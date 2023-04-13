@@ -3,7 +3,7 @@
    [re-frame.core :as re-frame]
    [app.renderer.db :as db]
    [clojure.string :as str]
-   [app.renderer.sci :refer [file files last-result update-editor! eval-tail]]))
+   [app.renderer.sci :refer [clear-eval]]))
 
 (re-frame/reg-event-db
  ::initialize-db
@@ -13,9 +13,5 @@
 (re-frame/reg-event-db
  ::clear-result
  (fn [db [_]]
-   (when (not= "" @last-result)
-     (reset! last-result "")
-     (let [code (str (first (str/split (str (some-> (deref (:viewer (@files @file))) .-state .-doc str)) #" => ")) @eval-tail)
-           cursor-pos (some-> (deref (:viewer (@files @file))) .-state .-selection .-main .-head)]
-       (update-editor! code (min cursor-pos (count code)))))
+   (clear-eval)
    (assoc db :eval-result "")))

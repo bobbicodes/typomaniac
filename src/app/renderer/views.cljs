@@ -4,14 +4,13 @@
    [re-frame.core :as re-frame]
    [re-pressed.core :as rp]
    [app.renderer.events :as events]
-   [app.renderer.sci :refer [update-editor! files file]]
+   [app.renderer.sci :refer [update-editor! files file last-result update-editor! eval-tail]]
    [app.renderer.sci-editor :as sci-editor]
    [nextjournal.clojure-mode.keymap :as keymap]
    [goog.object :as o]
-   [clojure.string :as str]
-   [goog.string :as gstring]))
+   [clojure.string :as str]))
 
-(re-frame/dispatch [::rp/set-keydown-rules
+#_(re-frame/dispatch [::rp/set-keydown-rules
                     {:event-keys (into [] (for [n (into [8 27 32 37 38 39 40] (range 40 100))]
                                             [[::events/clear-result]
                                              [{:keyCode n}]]))}])
