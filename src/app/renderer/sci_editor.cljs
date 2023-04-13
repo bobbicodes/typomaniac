@@ -1,12 +1,12 @@
 (ns app.renderer.sci-editor
   (:require ["@codemirror/fold" :as fold]
-             ["@codemirror/closebrackets" :refer [closeBrackets]]
+            ["@codemirror/closebrackets" :refer [closeBrackets]]
             ["@codemirror/gutter" :refer [lineNumbers]]
             ["@codemirror/highlight" :as highlight]
             ["@codemirror/history" :refer [history historyKeymap]]
             ["@codemirror/state" :refer [EditorState EditorSelection]]
             ["@codemirror/view" :as view :refer [EditorView]]
-            [app.renderer.sci :as sci :refer [eval-result last-result]]
+            [app.renderer.sci :as sci :refer [last-result]]
             [clojure.string :as str]
             [applied-science.js-interop :as j]
             [nextjournal.clojure-mode :as cm-clj]
@@ -87,13 +87,10 @@
                               (cond->
                                #js [extensions]
                                 eval?
-                                (.concat #js
-                                          [(sci/extension
-                                            {:modifier  "Alt"
-                                             :on-result
-                                             (fn [result]
-                                               (reset! eval-result result)
-                                               (reset! last-result result))})]))
+                                (.concat #js [(sci/extension
+                                               {:modifier  "Alt"
+                                                :on-result (fn [result]
+                                                             (reset! last-result result))})]))
                               source)
                              :parent el)))))]
     [:div

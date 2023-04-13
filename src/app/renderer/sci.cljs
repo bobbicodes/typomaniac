@@ -1,6 +1,5 @@
 (ns app.renderer.sci
   (:require ["@codemirror/view" :as view]
-            [app.renderer.max-or-throw :refer [max-or-throw]]
             [applied-science.js-interop :as j]
             [nextjournal.clojure-mode.extensions.eval-region :as eval-region]
             [sci.core :as sci]
@@ -12,17 +11,20 @@
 (defonce file (r/atom 0))
 
 (defonce last-result (r/atom ""))
-
-(def eval-result (r/atom ""))
  
 (defonce context
   (sci/init {:classes {'js goog/global :allow :all}
-             :namespaces {'max-or-throw.core {'max-or-throw max-or-throw}}}))
+             :namespaces {
+                          ;'max-or-throw.core {'max-or-throw max-or-throw}
+                          }}))
 
-(defn eval-string [source]
-  (try (sci/eval-string* context source)
-       (catch :default e
-         (str e))))
+(defn eval-string
+  ([source] (eval-string context source))
+  ([ctx source]
+   (when-some [code (not-empty (str/trim source))]
+     (try {:result (sci/eval-string* ctx code)}
+          (catch js/Error e
+            {:error (str (.-message e))})))))
 
 (defonce eval-tail (atom nil))
 
@@ -38,8 +40,8 @@
              (eval-string)
              (on-result))
     (update-editor! (str (subs code 0 cursor-pos)
-                         (when-not (= "" @last-result) " => ")
-                         @last-result
+                         (when-not (= "" (:result @last-result)) " => ")
+                         (:result @last-result)
                          (reset! eval-tail (subs code cursor-pos (count code))))
                     cursor-pos)
     (.dispatch (deref (:viewer (@files @file))) 
@@ -89,8 +91,7 @@
           :run (partial eval-cell on-result)}
          {:key  "Mod-Enter"
           :run (partial eval-top-level on-result)}
-         {:key "Enter"
-          :shift (partial eval-at-cursor on-result)
-          :run #()}
-         {:key "Escape"
-          :run #(clear-eval)}])))
+         {:key "Shift-Enter" :run (partial eval-at-cursor on-result)}
+         {:key "Escape" :run #(clear-eval)}
+         {:key "ArrowLeft" :run #(clear-eval)}
+         {:key "ArrowRight" :run #(clear-eval)}])))
