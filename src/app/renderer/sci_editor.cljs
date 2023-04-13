@@ -56,8 +56,7 @@
                                           [(str doc) (conj ranges (.cursor EditorSelection (count doc)))]
                                           (str/starts-with? match "<")
                                           [(str doc (subs match 1 (dec (count match))))
-                                           (conj ranges (.range EditorSelection
-                                                                (count doc)
+                                           (conj ranges (.range EditorSelection (count doc)
                                                                 (+ (count doc) (- (count match) 2))))]
                                           :else
                                           [(str doc match) ranges])) ["" []]))]
@@ -71,11 +70,6 @@
                  (cond-> #js[(.. EditorState -allowMultipleSelections (of true))]
                    extensions
                    (j/push! extensions))})))
-
-(defn eval-all [s]
-  (try (sci.core/eval-string s {:classes {'js goog/global :allow :all}})
-       (catch :default e
-         (str e))))
 
 (defn editor
   [source !view {:keys [eval? visible?]}]
@@ -104,8 +98,5 @@
             :ref   mount!
             :style {:display (if visible? "block" "none")
                     :margin-top -5
-                    ;:max-height 860
-                    :background-color "#F8B0F8"}}]
-     (when eval?
-       (reset! eval-result @last-result))]
+                    :background-color "#F8B0F8"}}]]
     (finally (j/call @!view :destroy))))

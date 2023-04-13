@@ -356,3 +356,9 @@ nil
 clj꞉app.renderer.sci꞉> 
 #'app.renderer.views/main-panel
 clj꞉app.renderer.views꞉> 
+#'app.renderer.sci-editor/theme
+clj꞉app.renderer.sci-editor꞉> 
+#js [#object[FacetProvider [object Object]] #object[FacetProvider [object Object]]]
+clj꞉app.renderer.sci-editor꞉> 
+#js {".cm-content" #js {:white-space "pre-wrap", :padding "10px 0"}, "&.cm-focused" #js {:outline "none"}, ".cm-line" #js {:padding "0 10px", :line-height "1.6", :font-size "16px", :font-family "var(--code-font)"}, ".cm-matchingBracket" #js {:border-bottom "2px solid var(--black)", :color "inherit"}, ".cm-gutters" #js {:background "transparent", :border "none"}, ".cm-gutterElement" #js {:margin-left "5px"}, ".cm-cursor" #js {:visibility "hidden"}, "&.cm-focused .cm-cursor" #js {:visibility "visible"}}
+clj꞉app.renderer.sci-editor꞉> 
