@@ -71,7 +71,7 @@
                    (j/push! extensions))})))
 
 (defn editor
-  [source !view {:keys [eval? visible?]}]
+  [source !view {:keys [eval?]}]
   (r/with-let
     [mount!
      (fn [el]
@@ -83,16 +83,11 @@
                               (cond->
                                #js [extensions]
                                 eval?
-                                (.concat #js [(sci/extension
-                                               {:modifier  "Alt"
-                                                :on-result (fn [result]
-                                                             (reset! last-result result))})]))
+                                (.concat #js [(sci/extension)]))
                               source)
                              :parent el)))))]
     [:div
      [:div {:class "rounded-md mb-0 text-sm monospace overflow-auto relative border shadow-lg bg-white"
             :ref   mount!
-            :style {:display (if visible? "block" "none")
-                    :margin-top -5
-                    :background-color "#F8B0F8"}}]]
+            :style {:background-color "#F8B0F8"}}]]
     (finally (j/call @!view :destroy))))
