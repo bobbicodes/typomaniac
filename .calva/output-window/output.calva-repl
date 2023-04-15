@@ -9,8 +9,8 @@
 ; You can make Calva auto-select this.
 ;   - See https://calva.io/connect-sequences/
 ; 
-; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer
-; Using host:port localhost:63151 ...
+; Starting Jack-in Terminal: pushd c:\Users\porko\Documents\GitHub\typomaniac & npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer & popd
+; Using host:port localhost:52505 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -24,434 +24,42 @@ clj꞉shadow.user꞉>  ; Use `alt+enter` to evaluate
 ; Creating cljs repl session...
 ; Connecting cljs repl: shadow-cljs...
 ;   The Calva Connection Log might have more connection progress information.
-; Connected session: cljs, repl: :main
+; Connected session: cljs, repl: :renderer
 ; TIPS: You can choose which REPL to use (clj or cljs):
 ;    *Calva: Toggle REPL connection*
 ;    (There is a button in the status bar for this)
 ; Jack-in done.
 cljs꞉cljs.user꞉>  ; Use `alt+enter` to evaluate
-nil
-; ------ WARNING - :undeclared-ns ------------------------------------------------
-;  Resource: <eval>:6:21
-;  No such namespace: o, could not locate o.cljs, o.cljc, or JavaScript source providing "o"
-; --------------------------------------------------------------------------------
-; 
-; 
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:6:21
-;  Use of undeclared Var o/get
-; --------------------------------------------------------------------------------
-; 
-; 
-; ------ WARNING - :undeclared-ns ------------------------------------------------
-;  Resource: <eval>:7:21
-;  No such namespace: o, could not locate o.cljs, o.cljc, or JavaScript source providing "o"
-; --------------------------------------------------------------------------------
-; 
-; 
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:7:21
-;  Use of undeclared Var o/getValueByKeys
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-nil
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:1:2
-;  Use of undeclared Var app.renderer.views/update-editor!
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-nil
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:1:2
-;  Use of undeclared Var app.renderer.views/update-editor!
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-nil
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:1:2
-;  Use of undeclared Var app.renderer.views/update-editor!
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-nil
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:1:2
-;  Use of undeclared Var app.renderer.views/update-editor!
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-nil
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:1:2
-;  Use of undeclared Var app.renderer.views/update-editor!
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-nil
-; ------ WARNING - :infer-warning ------------------------------------------------
-;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:49:5
-;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x6eb315f7 "cljs.tagged_literals.JSValue@6eb315f7"])
-; --------------------------------------------------------------------------------
-; 
-; 
-; ------ WARNING - :infer-warning ------------------------------------------------
-;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:62:5
-;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x77476441 "cljs.tagged_literals.JSValue@77476441"])
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-nil
-; ------ WARNING - :infer-warning ------------------------------------------------
-;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:49:5
-;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x6eb315f7 "cljs.tagged_literals.JSValue@6eb315f7"])
-; --------------------------------------------------------------------------------
-; 
-; 
-; ------ WARNING - :infer-warning ------------------------------------------------
-;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:62:5
-;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x77476441 "cljs.tagged_literals.JSValue@77476441"])
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; Cannot read properties of undefined (reading '_BANG_points')
-cljs꞉app.renderer.sci꞉> 
-nil
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/last-result
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/eval-result
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/context
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/max-seq-limit
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/instrument-1
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/instrument-eval
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/eval-string
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/!points
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/eval-tail
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/update-editor!
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/eval-at-cursor
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/eval-top-level
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/eval-cell
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/keymap*
-cljs꞉app.renderer.sci꞉> 
-nil
-; ------ WARNING - :infer-warning ------------------------------------------------
-;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:49:5
-;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x6eb315f7 "cljs.tagged_literals.JSValue@6eb315f7"])
-; --------------------------------------------------------------------------------
-; 
-; 
-; ------ WARNING - :infer-warning ------------------------------------------------
-;  File: C:\Users\porko\Documents\GitHub\typomaniac\src\app\renderer\sci.cljs:62:5
-;  Cannot infer target type in expression (. (clojure.core/deref !points) dispatch #object[cljs.tagged_literals.JSValue 0x77476441 "cljs.tagged_literals.JSValue@77476441"])
-; --------------------------------------------------------------------------------
-; 
-cljs꞉app.renderer.views꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; cljs.core.deref.call(...).dispatch is not a function
-cljs꞉app.renderer.views꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; cljs.core.deref.call(...).dispatch is not a function
-cljs꞉app.renderer.views꞉> 
-nil
-cljs꞉app.renderer.sci꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; cljs.core.deref.call(...).dispatch is not a function
-cljs꞉app.renderer.sci꞉> 
-#'app.renderer.sci/update-editor!
-cljs꞉app.renderer.sci꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; cljs.core.deref.call(...).dispatch is not a function
-cljs꞉app.renderer.sci꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; cljs.core.deref.call(...).dispatch is not a function
-cljs꞉app.renderer.sci꞉> 
-""
-cljs꞉app.renderer.sci꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; cljs.core.deref.call(...).dispatch is not a function
-cljs꞉app.renderer.sci꞉> 
-; nREPL connection failed: Error: read ECONNRESET
-; Failed connecting.
-; nREPL Connection was closed
-; Jacking in...
-; Connecting using "shadow-cljs" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer
-; Using host:port localhost:57785 ...
-; Hooking up nREPL sessions ...
-; Connected session: clj
-; TIPS:
-;   - You can edit the contents here. Use it as a REPL if you like.
-;   - `alt+enter` evaluates the current top level form.
-;   - `ctrl+enter` evaluates the current form.
-;   - `alt+up` and `alt+down` traverse up and down the REPL command history
-;      when the cursor is after the last contents at the prompt
-;   - Clojure lines in stack traces are peekable and clickable.
-clj꞉shadow.user꞉> 
-; Creating cljs repl session...
-; Connecting cljs repl: shadow-cljs...
-;   The Calva Connection Log might have more connection progress information.
-; Connected session: cljs, repl: :renderer
-; TIPS: You can choose which REPL to use (clj or cljs):
-;    *Calva: Toggle REPL connection*
-;    (There is a button in the status bar for this)
-; Jack-in done.
-cljs꞉cljs.user꞉> 
-#js [#object[LezerLanguage [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[LezerLanguage [object Object]] #object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-#object[Array]
-clj꞉app.renderer.sci-editor꞉> 
-#object[LezerLanguage [object Object]]
-clj꞉app.renderer.sci-editor꞉> 
-(#object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]])
-clj꞉app.renderer.sci-editor꞉> 
-(#object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]])
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[LezerLanguage [object Object]] #object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-(#js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]])
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[LezerLanguage [object Object]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[LezerLanguage [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[LezerLanguage [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]]
-clj꞉app.renderer.sci-editor꞉> 
-19
-clj꞉app.renderer.events꞉> 
-"(map inc (range 8))"
-clj꞉app.renderer.events꞉> 
-19
-clj꞉app.renderer.events꞉> 
-19
-clj꞉app.renderer.events꞉> 
-19
-clj꞉app.renderer.events꞉> 
-19
-clj꞉app.renderer.events꞉> 
-18
-clj꞉app.renderer.events꞉> 
-; nREPL connection failed: Error: read ECONNRESET
-; Failed connecting.
-; nREPL Connection was closed
-; Jacking in...
-; Connecting using "shadow-cljs" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer
-; Using host:port localhost:61728 ...
-; Hooking up nREPL sessions ...
-; Connected session: clj
-; TIPS:
-;   - You can edit the contents here. Use it as a REPL if you like.
-;   - `alt+enter` evaluates the current top level form.
-;   - `ctrl+enter` evaluates the current form.
-;   - `alt+up` and `alt+down` traverse up and down the REPL command history
-;      when the cursor is after the last contents at the prompt
-;   - Clojure lines in stack traces are peekable and clickable.
-clj꞉shadow.user꞉> 
-; Creating cljs repl session...
-; Connecting cljs repl: shadow-cljs...
-;   The Calva Connection Log might have more connection progress information.
-; Connected session: cljs, repl: :renderer
-; TIPS: You can choose which REPL to use (clj or cljs):
-;    *Calva: Toggle REPL connection*
-;    (There is a button in the status bar for this)
-; Jack-in done.
-cljs꞉cljs.user꞉> 
-#'app.renderer.views/main-panel
-clj꞉app.renderer.views꞉> 
-11
-clj꞉app.renderer.views꞉> 
-11
-clj꞉app.renderer.views꞉> 
-11
-clj꞉app.renderer.views꞉> 
-
-; Timeout while waiting for result.
-clj꞉app.renderer.views꞉> 
-
-; Timeout while waiting for result.
-clj꞉app.renderer.views꞉> 
-
-; Timeout while waiting for result.
-clj꞉app.renderer.views꞉> 
-
-; Timeout while waiting for result.
-clj꞉app.renderer.views꞉> 
-
-; Timeout while waiting for result.
-clj꞉app.renderer.views꞉> 
-:repl/exception!
-; 
-; Execution error (TypeError) at (<cljs repl>:1).
-; 2.call is not a function
-clj꞉app.renderer.views꞉> 
-"up"
-clj꞉app.renderer.views꞉> 
-nil
-clj꞉app.renderer.views꞉> 
-[{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]}]
-clj꞉app.renderer.views꞉> 
-[{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]} {"untitled2.clj" #object[reagent.ratom.RAtom {:val ""}]}]
-clj꞉app.renderer.views꞉> 
-{"untitled4.clj" #object[reagent.ratom.RAtom {:val ""}]}
-clj꞉app.renderer.views꞉> 
-{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]}
-clj꞉app.renderer.views꞉> 
-{:filename "untitled1.clj", :viewer #object[reagent.ratom.RAtom {:val #object[EditorView [object Object]]}]}
-clj꞉app.renderer.views꞉> 
-{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
-clj꞉app.renderer.views꞉> 
-{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
-clj꞉app.renderer.views꞉> 
-{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
-clj꞉app.renderer.views꞉> 
-{:filename "untitled2.clj", :viewer #object[reagent.ratom.RAtom {:val ""}]}
-clj꞉app.renderer.views꞉> 
-nil
+(let*
+ [G__56207
+  (eval-region/cursor-node-string (:state m))
+  G__56207
+  (if (clojure.core/nil? G__56207) nil (clojure.core/->> G__56207 (eval-string)))]
+ (if (clojure.core/nil? G__56207) nil (clojure.core/->> G__56207 (on-result))))
 clj꞉app.renderer.sci꞉> 
-#'app.renderer.views/main-panel
-clj꞉app.renderer.views꞉> 
-#'app.renderer.sci-editor/theme
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[FacetProvider [object Object]] #object[FacetProvider [object Object]]]
-clj꞉app.renderer.sci-editor꞉> 
-#js {".cm-content" #js {:white-space "pre-wrap", :padding "10px 0"}, "&.cm-focused" #js {:outline "none"}, ".cm-line" #js {:padding "0 10px", :line-height "1.6", :font-size "16px", :font-family "var(--code-font)"}, ".cm-matchingBracket" #js {:border-bottom "2px solid var(--black)", :color "inherit"}, ".cm-gutters" #js {:background "transparent", :border "none"}, ".cm-gutterElement" #js {:margin-left "5px"}, ".cm-cursor" #js {:visibility "hidden"}, "&.cm-focused .cm-cursor" #js {:visibility "visible"}}
-clj꞉app.renderer.sci-editor꞉> 
+(eval-string G__56207)
+clj꞉app.renderer.sci꞉> 
+(on-result G__56207)
+clj꞉app.renderer.sci꞉> 
+1
+clj꞉app.renderer.sci꞉> 
+"8"
+clj꞉app.renderer.sci꞉> 
 nil
 ; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:2:19
-;  Use of undeclared Var app.renderer.views/last-result
+;  Resource: <eval>:5:45
+;  Use of undeclared Var app.renderer.sci/m
 ; --------------------------------------------------------------------------------
 ; 
 ; 
 ; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:3:13
-;  Use of undeclared Var app.renderer.views/last-result
+;  Resource: <eval>:8:29
+;  Use of undeclared Var app.renderer.sci/on-result
 ; --------------------------------------------------------------------------------
 ; 
+clj꞉app.renderer.sci꞉> 
+:repl/exception!
 ; 
-; ------ WARNING - :undeclared-var -----------------------------------------------
-;  Resource: <eval>:9:26
-;  Use of undeclared Var app.renderer.views/eval-tail
-; --------------------------------------------------------------------------------
-; 
-clj꞉app.renderer.views꞉> 
-nil
-clj꞉app.renderer.views꞉> 
-#object[Function]
-clj꞉app.renderer.sci-editor꞉> 
-#js [#object[FacetProvider [object Object]] #object[StateField [object Object]]]
-clj꞉app.renderer.sci-editor꞉> 
-; nREPL connection failed: Error: read ECONNRESET
-; Failed connecting.
-; nREPL Connection was closed
-; Jacking in...
-; Connecting using "shadow-cljs" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer
-; Using host:port localhost:52023 ...
-; Hooking up nREPL sessions ...
-; Connected session: clj
-; TIPS:
-;   - You can edit the contents here. Use it as a REPL if you like.
-;   - `alt+enter` evaluates the current top level form.
-;   - `ctrl+enter` evaluates the current form.
-;   - `alt+up` and `alt+down` traverse up and down the REPL command history
-;      when the cursor is after the last contents at the prompt
-;   - Clojure lines in stack traces are peekable and clickable.
-clj꞉shadow.user꞉> 
-; Creating cljs repl session...
-; Connecting cljs repl: shadow-cljs...
-;   The Calva Connection Log might have more connection progress information.
-; Connected session: cljs, repl: :renderer
-; TIPS: You can choose which REPL to use (clj or cljs):
-;    *Calva: Toggle REPL connection*
-;    (There is a button in the status bar for this)
-; Jack-in done.
-cljs꞉cljs.user꞉> 
-""
-cljs꞉app.renderer.sci꞉> 
-(let* [G__57685 #js [extensions]] (if eval? (clojure.core/-> G__57685 (.concat #js [(sci/extension {:modifier "Alt", :on-result (fn [result] (reset! last-result result))})])) G__57685))
-cljs꞉app.renderer.sci-editor꞉> 
-(. G__57685 concat #js [(sci/extension {:modifier "Alt", :on-result (fn [result] (reset! last-result result))})])
-cljs꞉app.renderer.sci-editor꞉> 
-#js [#js [#js [#object[FacetProvider [object Object]] #object[FacetProvider [object Object]]] #js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[HighlightStyle [object Object]] #js [#object[FacetProvider [object Object]] #object[ViewPlugin [object Object]] #object[PrecExtension [object Object]]] #js [#object[FacetProvider [object Object]] #js [#js [#object[ViewPlugin [object Object]] #object[PrecExtension [object Object]]] #object[FacetProvider [object Object]]]] #js [#object[FacetProvider [object Object]] #object[StateField [object Object]]] #js [#object[ViewPlugin [object Object]] #js [#js [#object[ViewPlugin [object Object]] #object[PrecExtension [object Object]]] #object[FacetProvider [object Object]]] #js [#object[StateField [object Object]] #object[PrecExtension [object Object]]]] #object[FacetProvider [object Object]] #js [#object[LezerLanguage [object Object]] #object[FacetProvider [object Object]] #js [#object[PrecExtension [object Object]] #object[StateField [object Object]] #object[FacetProvider [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]] #js [#js [#object[StateField [object Object]] #object[FacetProvider [object Object]] #object[ViewPlugin [object Object]]] #object[StateField [object Object]] #object[FacetProvider [object Object]]]] #object[FacetProvider [object Object]] #object[FacetProvider [object Object]]]]
-cljs꞉app.renderer.sci-editor꞉> 
-#js [#js {:key "ArrowDown", :shift #object[selectLineDown], :run #object[cursorLineDown]} #js {:mac "Ctrl-n", :shift #object[selectLineDown], :run #object[cursorLineDown]} #js {:key "Mod-a", :run #object[selectAll]} #js {:key "End", :shift #object[selectLineBoundaryForward], :run #object[cursorLineBoundaryForward]} #js {:key "Backspace", :run #object[deleteCharBackward]} #js {:mac "Ctrl-h", :run #object[deleteCharBackward]} #js {:key "Home", :shift #object[selectLineBoundaryBackward], :mac "Ctrl-a", :run #object[cursorLineBoundaryBackward]} #js {:mac "Cmd-ArrowLeft", :shift #object[selectLineBoundaryBackward], :run #object[cursorLineBoundaryBackward]} #js {:key "Delete", :run #object[deleteCharForward]} #js {:mac "Ctrl-d", :run #object[deleteCharForward]} #js {:key "ArrowLeft", :shift #object[selectCharLeft], :run #object[global]} #js {:mac "Ctrl-b", :shift #object[selectCharLeft], :run #object[global]} #js {:mac "Alt-b", :shift #object[selectGroupBackward], :run #object[cursorGroupBackward]} #js {:mac "Cmd-ArrowDown", :shift #object[selectDocEnd], :run #object[cursorDocEnd]} #js {:key "Mod-End", :shift #object[selectDocEnd], :run #object[cursorDocEnd]} #js {:mac "Alt->", :run #object[cursorDocEnd]} #js {:key "Mod-Backspace", :mac "Alt-Backspace", :run #object[deleteGroupBackward]} #js {:mac "Ctrl-Alt-h", :run #object[deleteGroupBackward]} #js {:key "Mod-Delete", :mac "Ctrl-Alt-Backspace", :run #object[deleteGroupForward]} #js {:mac "Alt-Delete", :run #object[deleteGroupForward]} #js {:mac "Alt-d", :run #object[deleteGroupForward]} #js {:mac "Ctrl-ArrowDown", :shift #object[selectPageDown], :run #object[cursorPageDown]} #js {:key "PageDown", :shift #object[selectPageDown], :run #object[cursorPageDown]} #js {:mac "Ctrl-v", :run #object[cursorPageDown]} #js {:mac "Ctrl-ArrowUp", :shift #object[selectPageUp], :run #object[cursorPageUp]} #js {:key "PageUp", :shift #object[selectPageUp], :run #object[cursorPageUp]} #js {:mac "Alt-v", :run #object[cursorPageUp]} #js {:mac "Cmd-ArrowRight", :run #object[cursorLineEnd]} #js {:mac "Ctrl-e", :shift #object[selectLineEnd], :run #object[cursorLineEnd]} #js {:mac "Alt-f", :shift #object[selectGroupForward], :run #object[cursorGroupForward]} #js {:key "Mod-u", :preventDefault true, :run nil} #js {:key "ArrowRight", :shift #object[selectCharRight], :run #object[require]} #js {:mac "Ctrl-f", :shift #object[selectCharRight], :run #object[require]} #js {:mac "Ctrl-o", :run #object[splitLine]} #js {:mac "Ctrl-t", :run #object[transposeChars]} #js {:key "ArrowUp", :shift #object[selectLineUp], :run #object[cursorLineUp]} #js {:mac "Ctrl-p", :shift #object[selectLineUp], :run #object[cursorLineUp]} #js {:mac "Cmd-ArrowUp", :shift #object[selectDocStart], :run #object[cursorDocStart]} #js {:key "Mod-Home", :shift #object[selectDocStart], :run #object[cursorDocStart]} #js {:mac "Alt-<", :run #object[cursorDocStart]}]
-cljs꞉nextjournal.clojure-mode.keymap꞉> 
-; nREPL connection failed: Error: read ECONNRESET
-; Failed connecting.
-; nREPL Connection was closed
-; Jacking in...
-; Connecting using "shadow-cljs" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-; Starting Jack-in Terminal: npx.cmd shadow-cljs -d cider/cider-nrepl:0.28.5 watch :main :renderer
-; Using host:port localhost:59021 ...
-; Hooking up nREPL sessions ...
-; Connected session: clj
-; TIPS:
-;   - You can edit the contents here. Use it as a REPL if you like.
-;   - `alt+enter` evaluates the current top level form.
-;   - `ctrl+enter` evaluates the current form.
-;   - `alt+up` and `alt+down` traverse up and down the REPL command history
-;      when the cursor is after the last contents at the prompt
-;   - Clojure lines in stack traces are peekable and clickable.
-clj꞉shadow.user꞉> 
-; Creating cljs repl session...
-; Connecting cljs repl: shadow-cljs...
-;   The Calva Connection Log might have more connection progress information.
-; Connected session: cljs, repl: :renderer
-; TIPS: You can choose which REPL to use (clj or cljs):
-;    *Calva: Toggle REPL connection*
-;    (There is a button in the status bar for this)
-; Jack-in done.
-cljs꞉cljs.user꞉> 
+; Execution error (Error) at (<cljs repl>:1).
+; No protocol method IDeref.-deref defined for type undefined: 
+clj꞉app.renderer.sci꞉> 

@@ -7,16 +7,12 @@
             [sci.impl.evaluator]
             [clojure.string :as str]))
 
-(defonce files (r/atom [{:filename "untitled1.clj" :viewer (r/atom "")}]))
-(defonce file (r/atom 0))
-
+(defonce !points (r/atom ""))
 (defonce last-result (r/atom ""))
  
 (defonce context
   (sci/init {:classes {'js goog/global :allow :all}
-             :namespaces {
-                          ;'max-or-throw.core {'max-or-throw max-or-throw}
-                          }}))
+             :namespaces {}}))
 
 (defn eval-string
   ([source] (eval-string context source))
@@ -29,13 +25,13 @@
 (defonce eval-tail (atom nil))
 
 (defn update-editor! [text cursor-pos]
-  (let [end (count (some-> (deref (:viewer (@files @file))) .-state .-doc str))]
-    (.dispatch (deref (:viewer (@files @file))) #js{:changes #js{:from 0 :to end :insert text}
+  (let [end (count (some-> @!points .-state .-doc str))]
+    (.dispatch @!points #js{:changes #js{:from 0 :to end :insert text}
                             :selection #js{:anchor cursor-pos :head cursor-pos}})))
 
 (j/defn eval-at-cursor [on-result ^:js {:keys [state]}]
-  (let [cursor-pos (some-> (deref (:viewer (@files @file))) .-state .-selection .-main .-head)
-        code (first (str/split (str (some-> (deref (:viewer (@files @file))) .-state .-doc str)) #" => "))]
+  (let [cursor-pos (some-> @!points .-state .-selection .-main .-head)
+        code (first (str/split (str (some-> @!points .-state .-doc str)) #" => "))]
     (some->> (eval-region/cursor-node-string state)
              (eval-string)
              (on-result))
@@ -44,7 +40,7 @@
                          (:result @last-result)
                          (reset! eval-tail (subs code cursor-pos (count code))))
                     cursor-pos)
-    (.dispatch (deref (:viewer (@files @file))) 
+    (.dispatch @!points 
                #js{:selection #js{:anchor cursor-pos
                                   :head   cursor-pos}}))
   true)
@@ -64,13 +60,13 @@
 (defn clear-eval []
   (when (not= "" @last-result)
     (reset! last-result "")
-    (let [code (-> (deref (:viewer (@files @file)))
+    (let [code (-> @!points
                    (some-> .-state .-doc str)
                    str
                    (str/split #" => ")
                    first
                    (str @eval-tail))
-          cursor-pos (some-> (deref (:viewer (@files @file))) .-state .-selection .-main .-head)]
+          cursor-pos (some-> @!points .-state .-selection .-main .-head)]
       (update-editor! code (min cursor-pos (count code))))))
 
 (defn keymap* [modifier]
@@ -92,6 +88,6 @@
          {:key  "Mod-Enter"
           :run (partial eval-top-level on-result)}
          {:key "Shift-Enter" :run (partial eval-at-cursor on-result)}
-         {:key "Escape" :run #(clear-eval)}
-         {:key "ArrowLeft" :run #(clear-eval)}
-         {:key "ArrowRight" :run #(clear-eval)}])))
+         {:key "Escape" :run clear-eval}
+         {:key "ArrowLeft" :run clear-eval}
+         {:key "ArrowRight" :run clear-eval}])))
